@@ -3,9 +3,9 @@ const router = express.Router()
 const DBServices = require('../db/DataBaseServices')()
 
 //user routes
-router.get('/user/:email/:password', async (req, res) => {
-    const { email, password } = req.params
-    const user = await DBServices.getUser(email, password)
+router.get('/user/:email', async (req, res) => {
+    const { email } = req.params
+    const user = await DBServices.getUser(email)
     res.send(user)
 })
 
@@ -70,7 +70,14 @@ router.post('/todo', async (req, res) => {
 
 router.put('/todo/:id', async (req, res) => {
     const { id } = req.params
-    const saved = await DBServices.updateTodo(id)
+    const saved = await DBServices.checkTodo(id)
+    res.send(saved)
+})
+
+router.put('/changeTodo/:id', async (req, res) => {
+    const { id } = req.params
+    const todo = req.body
+    const saved = await DBServices.updateTodo(id, todo)
     res.send(saved)
 })
 
@@ -93,5 +100,6 @@ router.put('/update-booking/:id', async (req, res) => {
     const uBooking = await DBServices.updateBooking(bookingInfo, id)
     res.send(uBooking)
 })
+
 
 module.exports = router

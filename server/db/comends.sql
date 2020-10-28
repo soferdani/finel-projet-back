@@ -147,10 +147,13 @@ select * from booking ;
 --     PRIMARY KEY (service_provider, property)
 -- ) ;
 
--- SELECT * FROM USER_TYPE;
--- SELECT * FROM PROPERTY;
--- SELECT * FROM SERVICE_TYPE;
--- SELECT * FROM TODO;
+-- SELECT * FROM user;
+-- SELECT * FROM user_type;
+-- SELECT * FROM property;
+-- SELECT * FROM property_user;
+-- SELECT * FROM owner;
+-- SELECT * FROM booking;
+-- SELECT * FROM todo;
 -- DELETE FROM USER;
 
 -- INSERT INTO OWNERS VALUES(
@@ -165,12 +168,9 @@ select * from booking ;
 -- WHERE PROPERTY.maneger = USER.user_id
 -- AND PROPERTY.maneger = 11;
 
--- INSERT INTO SERVICE_TYPE VALUES(
+-- INSERT INTO user_type VALUES(
 --         NULL,
 --         'Plumbing');
-
-
-
 
 
 -- insert into USER_TYPE values (null, "elctricety");
@@ -179,18 +179,4 @@ select * from booking ;
 -- ALTER TABLE USER ADD avater text;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--     
