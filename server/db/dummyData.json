@@ -1,0 +1,10 @@
+{
+    "property id": "ad2155485q",
+    "property name": "property1test",
+    "start data": "2020-04-22 14:30:00",
+    "end date": "2020-04-31 14:30:00",
+    "number of gusts": 4,
+    "channel": "airbnb",
+    "number of night": 9,
+    "client name": "yosi"
+}

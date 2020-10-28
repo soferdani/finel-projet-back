@@ -80,5 +80,18 @@ router.delete('/todo/:id', async (req, res) => {
     res.send(deleted)
 })
 
+//booking routes
+router.post('/booking', async (req, res) => {
+    const bookingInfo = req.body
+    const nBooking = await DBServices.saveBooking(bookingInfo)
+    res.send(nBooking)
+})
+
+router.put('/update-booking/:id', async (req, res) => {
+    const { id } = req.params
+    const bookingInfo = req.body
+    const uBooking = await DBServices.updateBooking(bookingInfo, id)
+    res.send(uBooking)
+})
 
 module.exports = router
