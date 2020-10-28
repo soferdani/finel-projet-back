@@ -6,6 +6,7 @@ USE manageme;
 -- WHERE id = 4;
 
 -- UPDATE booking
+
 --                 SET channel = 'vrbo'
 --                 WHERE id = 4;
 -- `UPDATE booking
