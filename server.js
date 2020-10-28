@@ -1,7 +1,12 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const api = require('./server/Routes/api')
+// const api = require('./server/Routes/api')
+const user = require('./server/Routes/user')
+const property = require('./server/Routes/property')
+const todo = require('./server/Routes/todo')
+const booking = require('./server/Routes/booiking')
+const service = require('./server/Routes/service')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -14,7 +19,8 @@ app.use(function (req, res, next) {
     next()
 })
 
-app.use('/', api)
+// app.use('/', api)
+app.use('/', user, property, todo, booking, service)
 
 const port = 3001
 app.listen(port, function (req,res) {
