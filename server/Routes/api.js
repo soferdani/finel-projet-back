@@ -3,9 +3,9 @@ const router = express.Router()
 const DBServices = require('../db/DataBaseServices')()
 
 //user routes
-router.get('/user/:email/:password', async (req, res) => {
-    const { email, password } = req.params
-    const user = await DBServices.getUser(email, password)
+router.get('/user/:email', async (req, res) => {
+    const { email } = req.params
+    const user = await DBServices.getUser(email)
     res.send(user)
 })
 
@@ -70,7 +70,14 @@ router.post('/todo', async (req, res) => {
 
 router.put('/todo/:id', async (req, res) => {
     const { id } = req.params
-    const saved = await DBServices.updateTodo(id)
+    const saved = await DBServices.checkTodo(id)
+    res.send(saved)
+})
+
+router.put('/changeTodo/:id', async (req, res) => {
+    const { id } = req.params
+    const todo = req.body
+    const saved = await DBServices.updateTodo(id, todo)
     res.send(saved)
 })
 
@@ -79,6 +86,27 @@ router.delete('/todo/:id', async (req, res) => {
     const deleted = await DBServices.deleteTodo(id)
     res.send(deleted)
 })
+
+//servicer routes
+// router.get('/servicer/:id', async (req, res) => {
+//     const { id } = req.params
+//     const properties = await DBServices.getServicer(id)
+//     res.send(properties)
+
+// })
+
+// router.post('/servicer', async (req, res) => {
+//     const propertie = req.body
+//     const id = await DBServices.saveServicer(servicer)
+//     res.send(id)
+// })
+
+// router.put('/property/:id', async (req, res) => {
+//     const { id } = req.params
+//     const propertiy = req.body
+//     const saved = await DBServices.updateServicer(propertiy, id)
+//     res.send(saved)
+// })
 
 
 module.exports = router
