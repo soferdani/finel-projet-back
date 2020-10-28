@@ -16,14 +16,14 @@ router.post('/user', async (req, res) => {
 })
 
 router.put('/user/:id', async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const userData = req.body
     const saved = await DBServices.updateUser(id, userData)
     res.send(saved)
 })
 
 router.delete('/user/:id', async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const deleted = await DBServices.deleteUser(id)
     res.send(deleted)
 })
@@ -42,14 +42,15 @@ router.post('/property', async (req, res) => {
     res.send(id)
 })
 
-router.put('/property', async (req, res) => {
-    const {key, value, id} = req.body
-    const saved = await DBServices.updateProperty(key, value, id)
+router.put('/property/:id', async (req, res) => {
+    const { id } = req.params
+    const propertiy = req.body
+    const saved = await DBServices.updateProperty(propertiy, id)
     res.send(saved)
 })
 
 router.delete('/property/:id', async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const deleted = await DBServices.deleteProperty(id)
     res.send(deleted)
 })
@@ -62,19 +63,19 @@ router.get('/todos/:id', async (req, res) => {
 })
 
 router.post('/todo', async (req, res) => {
-    const user = req.body
-    const id = await DBServices.saveTodo(user)
+    const todo = req.body
+    const id = await DBServices.saveTodo(todo)
     res.send(id)
 })
 
-router.put('/todo', async (req, res) => {
-    const {key, value, id} = req.body
-    const saved = await DBServices.updateTodo(key, value, id)
+router.put('/todo/:id', async (req, res) => {
+    const { id } = req.params
+    const saved = await DBServices.updateTodo(id)
     res.send(saved)
 })
 
 router.delete('/todo/:id', async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const deleted = await DBServices.deleteTodo(id)
     res.send(deleted)
 })
