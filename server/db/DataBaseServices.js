@@ -61,85 +61,90 @@ const DBServices = function () {
 
     //properties
     const getProperties = async (id) => {
-        const query = `SELECT * FROM PROPERTY
-        WHERE id = ${id};`
+        const query = `SELECT *
+        FROM PROPERTY, OWNERS
+       WHERE PROPERTY.ONWER = OWNERS.id
+       AND PROPERTY.maneger = ${id};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
 
     const saveProperty = async (propertie) => {
-        const query = `INSERT INTO properties VALUES(
-        ${propertie.ac},
-        '${propertie.adress}',
-        ${propertie.bathrooms},
+        const query = `INSERT INTO PROPERTY VALUES(
         null,
         '${propertie.img}',
-        ${propertie.kitchen},
-        '${propertie.maneger}',
-        ${propertie.maxGusts},
+        '${propertie.adress}',
         ${propertie.numRooms},
-        '${propertie.owner}',
+        ${propertie.bathrooms},
+        ${propertie.maxGusts},
         ${propertie.pool},
-        ${propertie.wifi})`
-        const [id] = await sequelize.query(query)
+        ${propertie.ac},
+        ${propertie.wifi},
+        ${propertie.kitchen},
+        ${propertie.owner},
+        ${propertie.manager})`
+        const id = await sequelize.query(query)
         return id
     }
 
-    const updateProperty = async (key, value, id) => {
-        const query = `UPDATE properties
-        SET ac = '${userData.email}',
-        adress = '${userData.firstName}',
-        bathroms = '${userData.lastName}',
-        img = '${userData.phone}',
-        kitchen = '${userData.password}',
-        maneger = '${userData.type}',
-        max_gusts = '${userData.type}',
-        num_roms = '${userData.type}',
-        onwer = '${userData.type}',
-        pool = '${userData.type}',
-        wifi = '${userData.type}',
-        WHERE _id = ${id}`
+    const updateProperty = async (propertyData, id) => {
+        const query = `UPDATE PROPERTY
+        SET ac = ${propertyData.ac},
+        adress = '${propertyData.adress}',
+        bathroms = ${propertyData.bathrooms},
+        img = '${propertyData.img}',
+        kitchen = ${propertyData.kitchen},
+        maneger = ${propertyData.manager},
+        max_gusts = ${propertyData.maxGusts},
+        num_roms = ${propertyData.numRooms},
+        onwer = ${propertyData.owner},
+        pool = ${propertyData.pool},
+        wifi = ${propertyData.wifi}
+        WHERE id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
-        res.send(responseFromDB)
+        return responseFromDB
     }
 
     const deleteProperty = async (id) => {
-        const query = `DELETE FROM properties WHERE id = ${id}`
+        const query = `DELETE FROM PROPERTY WHERE id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
-        res.send(responseFromDB)
+        return responseFromDB
     }
 
     //todos
     const getTodos = async (id) => {
-        const query = `SELECT * FROM todos
-        WHERE _id = ${id};`
+        const query = `SELECT *
+        FROM TODO, SERVICE_TYPE
+        WHERE TODO.service_provider_type = SERVICE_TYPE.id
+        AND TODO.property = ${id};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
 
     const saveTodo = async (todo) => {
-        const query = `INSERT INTO todos VALUES(
+        const query = `INSERT INTO TODO VALUES(
         null,
-        '${todo.text}',
-        '${todo.type}',
-        '${moment().format('YYYY-MM-DD')}',
-        false');`
-        const [id] = await sequelize.query(query)
+        '${todo.task}',
+        ${todo.property},
+        ${todo.type},
+        false);`
+        //'${moment().format('YYYY-MM-DD')}',
+        const id = await sequelize.query(query)
         return id
     }
 
-    const updateTodo = async (key, value, id) => {
-        const query = `UPDATE todos
-        SET ${key} = '${value}'
-        WHERE _id = ${id}`
+    const updateTodo = async (id) => {
+        const query = `UPDATE TODO
+        SET  is_complite = 1
+        WHERE id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
-        res.send(responseFromDB)
+        return responseFromDB
     }
 
     const deleteTodo = async (id) => {
-        const query = `DELETE FROM todos WHERE _id = ${id}`
+        const query = `DELETE FROM todos WHERE id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
-        res.send(responseFromDB)
+        return responseFromDB
     }
 
     return {
