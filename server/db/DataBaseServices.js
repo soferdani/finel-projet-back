@@ -173,7 +173,7 @@ const DBServices = function () {
 
     //booking
 
-    const saveBooking = async (booking) => { //tested 
+    const saveBooking = async (booking) => { //tested
         const query = `INSERT INTO booking VALUES(
             null,
             "${booking.startData}",

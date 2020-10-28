@@ -1,16 +1,14 @@
 USE manageme;
 
-select * from booking ;
 
-
--- UPDATE booking 
+-- UPDATE booking
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
 
--- UPDATE booking 
+-- UPDATE booking
 --                 SET channel = 'vrbo'
 --                 WHERE id = 4;
--- `UPDATE booking 
+-- `UPDATE booking
 --                 SET ${key} = '${booking[key]}'
 --                 WHERE id = ${id};`
 
@@ -179,4 +177,8 @@ select * from booking ;
 -- ALTER TABLE USER ADD avater text;
 
 
---     
+--
+-- select * from property_user
+-- select * from user
+-- DELETE from user where user_id = 7
+-- DELETE from property_user where user = 7
