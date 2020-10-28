@@ -3,7 +3,10 @@ const sequelize = require('./sqlConnection')
 const propertyDBServices = function () {
 
     const getProperties = async (id) => {
-        const query = `SELECT id, img, adress, num_roms, bathroms, max_gusts, pool, ac, wifi,kitchen, owner, name, phone, country, email
+        const query = `SELECT id, img,
+        adress, num_roms AS roomNum,
+        bathroms AS bathrooms, max_gusts AS maxGusts, pool,
+        ac, wifi, kitchen, owner, name, phone, country, email
         FROM property AS p JOIN property_user AS po ON p.id = po.property
         JOIN owner AS o ON o.o_id = p.owner
         WHERE po.user = ${id}`
