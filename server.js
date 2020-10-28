@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-// const api = require('./server/Routes/api')
 const user = require('./server/Routes/user')
 const property = require('./server/Routes/property')
 const todo = require('./server/Routes/todo')
@@ -19,7 +18,6 @@ app.use(function (req, res, next) {
     next()
 })
 
-// app.use('/', api)
 app.use('/', user, property, todo, booking, service)
 
 const port = 3001

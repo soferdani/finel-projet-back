@@ -4,7 +4,7 @@ const moment = require('moment')
 const userDBServices = function () {
 
     const getUser = async (email) => {
-        const query = `SELECT user_id, first_name, last_name, email, phone, datejoin, user_type, token, img
+        const query = `SELECT user_id, first_name, last_name, email, phone, datejoin, user_type, img
         FROM user
         WHERE email = '${email}';`
         const [responseFromDB] = await sequelize.query(query)
