@@ -207,6 +207,20 @@ const DBServices = function () {
     }
 
 
+    const getAllBooking = async (propertyId) => { //tested 
+        let query = `select * from booking where property = ${propertyId};`
+        const [responseFromDB] = await sequelize.query(query)
+        return responseFromDB
+    }
+
+    const removeBooking = async (bookingId) => { 
+        let query = `delete from booking where id = ${bookingId};`
+        const [responseFromDB] = await sequelize.query(query)
+        return responseFromDB
+    }
+
+
+
     return {
         getUser,
         saveUser,
@@ -222,7 +236,9 @@ const DBServices = function () {
         updateTodo,
         deleteTodo,
         saveBooking,
-        updateBooking
+        updateBooking,
+        getAllBooking,
+        removeBooking
     }
 }
 

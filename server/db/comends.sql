@@ -1,11 +1,10 @@
 USE manageme;
 
-select * from booking ;
-
-
 -- UPDATE booking 
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
+
+alter TABLE user DROP COLUMN token; 
 
 -- UPDATE booking 
 --                 SET channel = 'vrbo'
