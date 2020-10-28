@@ -87,26 +87,19 @@ router.delete('/todo/:id', async (req, res) => {
     res.send(deleted)
 })
 
-//servicer routes
-// router.get('/servicer/:id', async (req, res) => {
-//     const { id } = req.params
-//     const properties = await DBServices.getServicer(id)
-//     res.send(properties)
+//booking routes
+router.post('/booking', async (req, res) => {
+    const bookingInfo = req.body
+    const nBooking = await DBServices.saveBooking(bookingInfo)
+    res.send(nBooking)
+})
 
-// })
-
-// router.post('/servicer', async (req, res) => {
-//     const propertie = req.body
-//     const id = await DBServices.saveServicer(servicer)
-//     res.send(id)
-// })
-
-// router.put('/property/:id', async (req, res) => {
-//     const { id } = req.params
-//     const propertiy = req.body
-//     const saved = await DBServices.updateServicer(propertiy, id)
-//     res.send(saved)
-// })
+router.put('/update-booking/:id', async (req, res) => {
+    const { id } = req.params
+    const bookingInfo = req.body
+    const uBooking = await DBServices.updateBooking(bookingInfo, id)
+    res.send(uBooking)
+})
 
 
 module.exports = router
