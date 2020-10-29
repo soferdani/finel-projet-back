@@ -15,6 +15,15 @@ const propertyDBServices = function () {
     }
 
     const saveProperty = async (propertie) => {
+        if(!propertie.owner.id){
+            const ownerQuery = `INSERT INTO owner VALUES(
+                null,
+                '${propertie.owner.name}',
+                '${propertie.owner.phone}',
+                '${propertie.owner.country}',
+                '${propertie.owner.email}')`
+                propertie.owner.id = await sequelize.query(ownerQuery)
+        }
         const query = `INSERT INTO property VALUES(
         null,
         '${propertie.img}',
@@ -26,13 +35,13 @@ const propertyDBServices = function () {
         ${propertie.ac},
         ${propertie.wifi},
         ${propertie.kitchen},
-        ${propertie.owner})`
-        const id = await sequelize.query(query)
+        ${propertie.owner.id[0]})`
+        const propertyId = await sequelize.query(query)
         const joinQuery = `INSERT INTO property_user VALUES(
             ${propertie.manager},
-            ${id[0]})`
+            ${propertyId[0]})`
         await sequelize.query(joinQuery)
-        return id
+        return [propertyId[0], propertie.owner.id[0]]
     }
 
     const updateProperty = async (propertyData, id) => {

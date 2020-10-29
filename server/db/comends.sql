@@ -180,6 +180,9 @@ USE manageme;
 
 --
 -- select * from property_user
--- select * from user
+-- select * from property
+-- select * from owner
+select * from user
 -- DELETE from user where user_id = 7
 -- DELETE from property_user where user = 7
+-- DELETE from owner where o_id = 3

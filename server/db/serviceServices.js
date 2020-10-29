@@ -4,7 +4,10 @@ const moment = require('moment')
 const serviceDBServices = function () {
 
     const getService = async (id) => {
-        const query = `SELECT *
+        const query = `SELECT user_id as id, first_name as firstName,
+        last_name as lastName, email,
+        phone, datejoin AS dateJoin,
+        user_type as type, img
         FROM user AS u JOIN property_user AS pu ON u.user_id = pu.user
         JOIN user_type as ut ON ut.type_id = u.user_type
         WHERE pu.property = ${id}
