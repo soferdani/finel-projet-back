@@ -12,7 +12,7 @@ const userDBServices = function () {
         FROM user
         WHERE email = '${email}';`
         const [responseFromDB] = await sequelize.query(query)
-        return responseFromDB
+        return responseFromDB[0]
     }
 
     const saveUser = async (user) => {
