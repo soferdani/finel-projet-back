@@ -6,21 +6,17 @@ const property = require('./server/Routes/property')
 const todo = require('./server/Routes/todo')
 const booking = require('./server/Routes/booiking')
 const service = require('./server/Routes/service')
+const path = require("path")
+
+// const test = require ('../client-side')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
-
-    next()
-})
+app.use(express.static(path.join(__dirname, '../client-side/build')));
 
 app.use('/', user, property, todo, booking, service)
 
-const port = 3001
+const port = 3000
 app.listen(port, function (req,res) {
     console.log(`running on port ${port}`);
 })
