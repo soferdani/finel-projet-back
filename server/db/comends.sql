@@ -4,6 +4,7 @@ USE manageme;
 -- UPDATE booking
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
+select * from user
 
 -- UPDATE booking
 
