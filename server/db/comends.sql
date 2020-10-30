@@ -7,7 +7,26 @@ USE manageme;
 -- UPDATE booking
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
-select * from user
+
+
+
+-- ALTER TABLE property
+-- RENAME COLUMN adress to address;
+-- ALTER TABLE property
+-- RENAME COLUMN num_roms to rooms;
+-- ALTER TABLE property
+-- RENAME COLUMN bathroms to bathrooms;
+-- ALTER TABLE property
+-- RENAME COLUMN max_gusts to guests;
+
+
+-- ALTER TABLE booking
+-- ADD phone varchar(10);
+
+-- ALTER TABLE property
+-- ADD name text;
+
+select * from booking
 
 -- UPDATE booking
 

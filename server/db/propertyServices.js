@@ -3,10 +3,11 @@ const sequelize = require('./sqlConnection')
 const propertyDBServices = function () {
 
     const getProperties = async (id) => {
-        const query = `SELECT id, img,
-        adress, num_roms AS roomNum,
-        bathroms AS bathrooms, max_gusts AS maxGusts, pool,
-        ac, wifi, kitchen, owner, name, phone, country, email
+        const query = `SELECT id, img, p.name as propertyName,
+        address, rooms,
+        bathrooms, guests, pool,
+        ac, wifi, kitchen, o.name as ownerName,
+        phone, country, email, owner as ownerId
         FROM property AS p JOIN property_user AS po ON p.id = po.property
         JOIN owner AS o ON o.o_id = p.owner
         WHERE po.user = ${id}`
@@ -23,19 +24,21 @@ const propertyDBServices = function () {
                 '${propertie.owner.country}',
                 '${propertie.owner.email}')`
                 propertie.owner.id = await sequelize.query(ownerQuery)
+                propertie.owner.id = propertie.owner.id[0]
         }
         const query = `INSERT INTO property VALUES(
         null,
         '${propertie.img}',
-        '${propertie.adress}',
-        ${propertie.numRooms},
+        '${propertie.address}',
+        ${propertie.rooms},
         ${propertie.bathrooms},
-        ${propertie.maxGusts},
+        ${propertie.guests},
         ${propertie.pool},
         ${propertie.ac},
         ${propertie.wifi},
         ${propertie.kitchen},
-        ${propertie.owner.id[0]})`
+        ${propertie.owner.id},
+        '${propertie.name}')`
         const propertyId = await sequelize.query(query)
         const joinQuery = `INSERT INTO property_user VALUES(
             ${propertie.manager},
