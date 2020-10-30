@@ -4,9 +4,9 @@ const moment = require('moment')
 const todoDBServices = function () {
 
     const getTodos = async (id) => {
-        const query = `SELECT t.t_id, task, is_complete, create_date, type_name, img
+        const query = `SELECT t.t_id, task, complete, date, ut.type, img
         FROM todo AS t JOIN user_type AS ut
-        on t.service_type = ut.type_id
+        on t.type = ut.type_id
         WHERE t.property = ${id};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
@@ -27,7 +27,7 @@ const todoDBServices = function () {
 
     const checkTodo = async (id) => {
         const query = `UPDATE todo
-        SET  is_complete = 1
+        SET  complete = 1
         WHERE t_id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB

@@ -8,8 +8,8 @@ const userDBServices = function () {
         first_name as firstName,
         last_name as lastName,
         email, phone,
-        datejoin as dateJoin, user_type as type , img
-        FROM user
+        datejoin as dateJoin, type , img
+        FROM user JOIN user_type ON user_type.type_id = user.user_type
         WHERE email = '${email}';`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB[0]
@@ -24,7 +24,7 @@ const userDBServices = function () {
             '${user.phone}',
             '${moment().format('YYYY-MM-DD')}',
             '${user.type}',
-            '${user.img}');`
+            'https://storage.jewheart.com/content/users/avatars/2928/avatar_2928_500.jpg?1480517568');`
         const id = await sequelize.query(query)
         return id
     }

@@ -6,7 +6,6 @@ router.get('/properties/:id', async (req, res) => {
     const { id } = req.params
     const properties = await DBServices.getProperties(id)
     res.send(properties)
-
 })
 
 router.post('/property', async (req, res) => {
