@@ -37,7 +37,14 @@ const bookingDBServices = function () {
 
 
     const getAllBooking = async (propertyId) => { //tested
-        let query = `select * from booking where property = ${propertyId};`
+        let query = `select id,
+         start_date as startDate,
+         end_data as endDate,
+         gusts, channel, nights,
+         g_first_name as firstName,
+         g_last_name as lastName,
+         g_photo as img
+         from booking where property = ${propertyId};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }

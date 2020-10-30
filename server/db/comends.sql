@@ -1,5 +1,8 @@
 USE manageme;
 
+-- select * from booking;
+
+-- UPDATE booking set end_data = "2020-04-26T14:30:00.000Z" where id = 3;
 
 -- UPDATE booking
 -- SET g_first_name = 'dudi'
@@ -182,7 +185,7 @@ USE manageme;
 -- select * from property_user
 -- select * from property
 -- select * from owner
-select * from user
+-- select * from user
 -- DELETE from user where user_id = 7
 -- DELETE from property_user where user = 7
 -- DELETE from owner where o_id = 3
