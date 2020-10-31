@@ -17,7 +17,7 @@ const todoDBServices = function () {
         null,
         '${todo.task}',
         ${todo.property},
-        ${todo.type},
+        (SELECT type_id FROM user_type WHERE type='${todo.type}'),
         '${moment().format('YYYY-MM-DD')}',
         false,
         '${todo.img}');`
@@ -25,9 +25,9 @@ const todoDBServices = function () {
         return id
     }
 
-    const checkTodo = async (id) => {
+    const checkTodo = async (id, status) => {
         const query = `UPDATE todo
-        SET  complete = 1
+        SET  complete = ${status}
         WHERE t_id = ${id}`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
