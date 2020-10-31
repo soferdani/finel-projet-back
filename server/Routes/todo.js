@@ -16,7 +16,8 @@ router.post('/todo', async (req, res) => {
 
 router.put('/todo/:id', async (req, res) => {
     const { id } = req.params
-    const saved = await DBServices.checkTodo(id)
+    const { status } = req.body
+    const saved = await DBServices.checkTodo(id, status)
     res.send(saved)
 })
 
