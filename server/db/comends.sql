@@ -76,7 +76,20 @@ USE manageme;
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
 
+
+-- SELECT u.email, u.phone, p.name, p.address
+--                         FROM property_user AS pu JOIN property AS p ON pu.property = p.id
+--                         JOIN user as u ON u.user_id = pu.user
+--                         JOIN user_type AS ut ON ut.type_id = u.user_type
+--                         WHERE p.id = 3
+--                         AND ut.type =  'Plumbing'
+
+-- select * from property_user
+-- select * from user
+-- select * from user_type
+-- select * from property
 -- select * from user;
+
 
 -- ALTER TABLE property
 -- RENAME COLUMN adress to address;
@@ -94,6 +107,7 @@ USE manageme;
 -- ALTER TABLE property
 -- ADD name text;
 
+-- select * from booking
 -- select * from user_type;
 
 -- UPDATE booking
