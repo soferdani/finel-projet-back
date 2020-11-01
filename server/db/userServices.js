@@ -8,7 +8,7 @@ const userDBServices = function () {
         first_name as firstName,
         last_name as lastName,
         email, phone,
-        datejoin as dateJoin, type , img
+        datejoin as dateJoin, type , img,
         user_type as typeId
         FROM user JOIN user_type ON user_type.type_id = user.user_type
         WHERE email = '${email}';`
