@@ -7,7 +7,7 @@ const employeeDBServices = function () {
         const query = `SELECT user_id as id, first_name as firstName,
         last_name as lastName, email,
         phone, datejoin AS dateJoin,
-        user_type as type, img
+        user_type as typeId, type, img
         FROM user AS u JOIN property_user AS pu ON u.user_id = pu.user
         JOIN user_type as ut ON ut.type_id = u.user_type
         WHERE pu.property = ${id}
