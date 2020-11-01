@@ -12,6 +12,7 @@ router.get('/booking/:propertyId', async (req, res) => {
 router.post('/booking', async (req, res) => {
     const bookingInfo = req.body
     const nBooking = await DBServices.saveBooking(bookingInfo)
+    await DBServices.addBookingServices(bookingInfo)
     res.send(nBooking)
 })
 
