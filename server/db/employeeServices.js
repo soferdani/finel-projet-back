@@ -42,16 +42,34 @@ const employeeDBServices = function () {
             return response
         }
 
-        const addEmployeeTask = async (propertyId, type) => {
-            const query = `SELECT u.email, u.phone, p.name, p.adress
+    const getEmployeeAndProperty = async (propertyId, type, employeeId) => {
+        let query
+        if (employeeName) {
+            query = `SELECT
+                u.first_name as employeeName,
+                u.email as email,
+                u.phone as phone,
+                p.name as propertyName,
+                p.address as address
+                FROM property AS p, user as u
+                WHERE p.id = ${propertyId}
+                AND u.user_id =  '${employeeId}'`
+        } else {
+            query = `SELECT
+                            u.first_name as employeeName,
+                            u.email as email,
+                            u.phone as phone,
+                            p.name as propertyName,
+                            p.address as address
                             FROM property_user AS pu JOIN property AS p ON pu.property = p.id
                             JOIN user as u ON u.user_id = pu.user
                             JOIN user_type AS ut ON ut.type_id = u.user_type
                             WHERE p.id = ${propertyId}
                             AND ut.type =  '${type}'`
-            const [reponse] = await sequelize.query(query)
-            return reponse
         }
+        const [reponse] = await sequelize.query(query)
+        return reponse
+    }
 
         const addBookingServices = async (booking) => {
             const query = `INSERT INTO booking values(
@@ -86,7 +104,7 @@ const employeeDBServices = function () {
         getAllEmployees,
         saveEmployee,
         saveAndCreateEmployee,
-        addEmployeeTask,
+        getEmployeeAndProperty,
         deleteEmployee
     }
 }
