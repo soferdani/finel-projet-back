@@ -1,12 +1,72 @@
 USE manageme;
 
--- select * from booking;
 
--- UPDATE booking set end_data = "2020-04-26T14:30:00.000Z" where id = 3;
+-- insert INTO user_type values (
+--     null,
+--     "Pool"
+-- );
+
+-- drop TABLE maneger; 
+
+-- SELECT type from user_type where type_id = 1;
+
+-- create database mangeme2 ;
+
+-- create TABLE manger_employee (
+--     manager_id int,
+--     employee_id int,
+--     FOREIGN KEY (manager_id) REFERENCES user(user_id),
+--     FOREIGN KEY (employee_id) REFERENCES user(user_id)
+-- );
+
+-- select * from user;
+
+-- insert into manger_employee values (
+--     1,
+--     4
+-- )
+
+-- create TABLE maneger (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     first_name VARCHAR(40),
+--     last_name VARCHAR(40),
+--     img text,
+--     email VARCHAR(80),
+--     phone VARCHAR(10),
+--     datejoin datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     user_type INT DEFAULT 1,
+--     FOREIGN KEY (user_type) REFERENCES user_type(type_id)
+-- );
+
+-- select * from user;
+
+-- select user_id as id, first_name as firstName, last_name as lastName 
+-- from user as u join manger_employee as me
+-- on u.user_id = me.employee_id 
+-- where me.manager_id = 2;
+
+-- alter TABLE booking add type varchar(70);
+
+-- select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin, type, img
+-- from user as u join manger_employee as me 
+-- on u.user_id = me.employee_id
+-- join user_type as ut
+-- on u.user_type = ut.type_id 
+-- where me.manager_id = 1;
+
+
+-- DELETE from manger_employee where manager_id = 1 and employee_id = 3;
+
+-- DELETE from user_type where type_id = 
+
+-- select * from user;
+
+-- UPDATE user_type set type = '';
 
 -- UPDATE booking
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
+
 
 -- SELECT u.email, u.phone, p.name, p.address
 --                         FROM property_user AS pu JOIN property AS p ON pu.property = p.id
@@ -17,8 +77,10 @@ USE manageme;
 
 -- select * from property_user
 -- select * from user
-select * from user_type
+-- select * from user_type
 -- select * from property
+-- select * from user;
+
 
 -- ALTER TABLE property
 -- RENAME COLUMN adress to address;
@@ -37,6 +99,7 @@ select * from user_type
 -- ADD name text;
 
 -- select * from booking
+-- select * from user_type;
 
 -- UPDATE booking
 

@@ -29,6 +29,7 @@ const userDBServices = function () {
         return id
     }
 
+
     const updateUser = async (id, userData) => {
         let query = `UPDATE user SET `
         for (let i in Object.keys(userData)) {
@@ -51,11 +52,43 @@ const userDBServices = function () {
         return responseFromDB
     }
 
+
+    const addNewEmployee = async(managerId, employeeId) => {
+        const query = `insert into manger_employee values (
+            ${managerId},
+            ${employeeId});`
+        const responseFromDB = await sequelize.query(query)
+        return responseFromDB
+    }
+
+
+    const getAllEmployee = async(managerId) => {
+        const query = `select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin as dateJoin, type, img
+        from user as u join manger_employee as me 
+        on u.user_id = me.employee_id
+        join user_type as ut
+        on u.user_type = ut.type_id 
+        where me.manager_id = ${managerId};`
+        const [responseFromDB] = await sequelize.query(query)
+        return responseFromDB
+    }
+
+
+    const deleteEmployee = async(managerId,employeeId) => {
+        const query = `DELETE from manger_employee where manager_id = ${managerId} and employee_id = ${employeeId};`
+        const responseFromDB = await sequelize.query(query)
+        return responseFromDB
+    }
+
+
     return {
         getUser,
         saveUser,
         updateUser,
-        deleteUser
+        deleteUser,
+        deleteEmployee,
+        addNewEmployee,
+        getAllEmployee
     }
 }
 

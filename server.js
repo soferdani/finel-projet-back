@@ -7,6 +7,7 @@ const todo = require('./server/Routes/todo')
 const booking = require('./server/Routes/booiking')
 const service = require('./server/Routes/service')
 const communication = require('./server/db/communicationService')()
+const userType = require ('./server/Routes/userType')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -19,7 +20,7 @@ app.use(function (req, res, next) {
     next()
 })
 
-app.use('/', user, property, todo, booking, service)
+app.use('/', user, property, todo, booking, service,userType)
 
 communication.sendSMS('+972523896679', '+972524201605', 'Test the twilio package')
 
