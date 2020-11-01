@@ -1,6 +1,15 @@
 USE manageme;
 
+-- ALTER TABLE booking DROP first_name;
+-- ALTER TABLE booking DROP last_name;
+-- ALTER TABLE booking DROP img;
+-- ALTER TABLE booking DROP external_property_name;
+-- ALTER TABLE booking modify COLUMN id varchar(110);
 
+
+
+-- alter TABLE booking add name varchar(60);
+-- 
 -- insert INTO user_type values (
 --     null,
 --     "Pool"

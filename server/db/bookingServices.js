@@ -1,4 +1,7 @@
 const sequelize = require('./sqlConnection')
+import axios from 'axios'
+const cron = require('node-cron')
+const moment = require('moment')
 
 const bookingDBServices = function () {
 
@@ -57,6 +60,32 @@ const bookingDBServices = function () {
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
+
+    cron.schedule('2 * * * *', async () => {
+        let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
+        let allBooking = []
+        for (let booking of newBookingFromAPI.data.data) {
+            let bookingExist = await sequelize
+                .query(`SELECT * FROM booking WHERE id = '${booking.id}'`) 
+            if (bookingExist[0].length === 0) {
+                let query = `insert into booking values (
+                    "${booking.id}",
+                    ${moment(booking.fromdate_c).format()}, 
+                    ${moment(booking.todate_c).format()},
+                    (select id from property where name = '${booking.CHINGEMEEE}'),
+                    ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
+                    "${booking.lead_source}",
+                    "${booking.phone_mobile}",
+                    "${booking.email}",
+                    "${booking.name}"                
+                );`
+                const newBooking = await sequelize.query(query)
+                allBooking.push(newBooking)
+            }
+        }
+        return allBooking
+    })
+
 
     return {
         saveBooking,
