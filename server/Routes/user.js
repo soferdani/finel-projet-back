@@ -27,4 +27,25 @@ router.delete('/user/:id', async (req, res) => {
     res.send(deleted)
 })
 
+
+router.post('/useremployee', async (req, res) => {
+    const { managerId, employeeId } = req.body
+    let id = await DBServices.addNewEmployee(managerId,employeeId)
+    res.send(id)
+})
+
+router.get('/useremployee/:managerId', async (req, res) => {
+    const { managerId } = req.params
+    const employees = await DBServices.getAllEmployee(managerId)
+    res.send(employees)
+})
+
+
+router.delete('/useremployee', async (req, res) => {
+    const { managerId, employeeId } = req.body
+    let id = await DBServices.deleteEmployee(managerId,employeeId)
+    res.send(id)
+})
+
+
 module.exports = router
