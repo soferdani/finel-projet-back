@@ -1,7 +1,7 @@
 USE manageme;
 
 
-select * from booking;
+select * from manger_employee;
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
