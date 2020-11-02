@@ -1,5 +1,8 @@
 USE manageme;
 
+
+select * from booking;
+
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
 -- ALTER TABLE booking DROP img;
