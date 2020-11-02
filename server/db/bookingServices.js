@@ -10,9 +10,8 @@ const bookingDBServices = function () {
         let query = `select id,
          start_date as startDate,
          end_date as endDate,
-         guests, channel,
-         name,
-         phone, email
+         guests, channel, name,
+          phone, email, property
          from booking where property = ${propertyId};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
@@ -20,7 +19,7 @@ const bookingDBServices = function () {
 
     const saveBooking = async (booking) => { //tested
         let query = `insert into booking values (
-            "${booking.id}",
+            null,
             ${moment(booking.fromdate_c).format()}, 
             ${moment(booking.todate_c).format()},
             (select id from property where name = '${booking.villa_name}'),
@@ -28,7 +27,8 @@ const bookingDBServices = function () {
             "${booking.lead_source}",
             "${booking.phone_mobile}",
             "${booking.email}",
-            "${booking.name}"                
+            "${booking.name}",
+            "${booking.id}"
         );`
         const newBooking = await sequelize.query(query)
         return newBooking
