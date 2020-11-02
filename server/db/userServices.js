@@ -8,7 +8,8 @@ const userDBServices = function () {
         first_name as firstName,
         last_name as lastName,
         email, phone,
-        datejoin as dateJoin, type , img
+        datejoin as dateJoin, type , img,
+        user_type as typeId
         FROM user JOIN user_type ON user_type.type_id = user.user_type
         WHERE email = '${email}';`
         const [responseFromDB] = await sequelize.query(query)
@@ -63,11 +64,11 @@ const userDBServices = function () {
 
 
     const getAllEmployee = async(managerId) => {
-        const query = `select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin, type, img
-        from user as u join manger_employee as me 
+        const query = `select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin as dateJoin, type, img
+        from user as u join manger_employee as me
         on u.user_id = me.employee_id
         join user_type as ut
-        on u.user_type = ut.type_id 
+        on u.user_type = ut.type_id
         where me.manager_id = ${managerId};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB

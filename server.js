@@ -21,6 +21,7 @@ app.use(function (req, res, next) {
 
 app.use('/', user, property, todo, booking, service,userType)
 
+
 const port = 3001
 app.listen(port, function (req,res) {
     console.log(`running on port ${port}`);

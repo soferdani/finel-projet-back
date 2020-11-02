@@ -15,7 +15,7 @@ USE manageme;
 --     "Pool"
 -- );
 
--- drop TABLE maneger; 
+-- drop TABLE maneger;
 
 -- SELECT type from user_type where type_id = 1;
 
@@ -49,24 +49,24 @@ USE manageme;
 
 -- select * from user;
 
--- select user_id as id, first_name as firstName, last_name as lastName 
+-- select user_id as id, first_name as firstName, last_name as lastName
 -- from user as u join manger_employee as me
--- on u.user_id = me.employee_id 
+-- on u.user_id = me.employee_id
 -- where me.manager_id = 2;
 
 -- alter TABLE booking add type varchar(70);
 
 -- select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin, type, img
--- from user as u join manger_employee as me 
+-- from user as u join manger_employee as me
 -- on u.user_id = me.employee_id
 -- join user_type as ut
--- on u.user_type = ut.type_id 
+-- on u.user_type = ut.type_id
 -- where me.manager_id = 1;
 
 
 -- DELETE from manger_employee where manager_id = 1 and employee_id = 3;
 
--- DELETE from user_type where type_id = 
+-- DELETE from user_type where type_id =
 
 -- select * from user;
 
@@ -76,7 +76,20 @@ USE manageme;
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
 
+
+-- SELECT u.email, u.phone, p.name, p.address
+--                         FROM property_user AS pu JOIN property AS p ON pu.property = p.id
+--                         JOIN user as u ON u.user_id = pu.user
+--                         JOIN user_type AS ut ON ut.type_id = u.user_type
+--                         WHERE p.id = 3
+--                         AND ut.type =  'Plumbing'
+
+-- select * from property_user
+-- select * from user
+-- select * from user_type
+-- select * from property
 -- select * from user;
+
 
 -- ALTER TABLE property
 -- RENAME COLUMN adress to address;
@@ -94,6 +107,7 @@ USE manageme;
 -- ALTER TABLE property
 -- ADD name text;
 
+-- select * from booking
 -- select * from user_type;
 
 -- UPDATE booking
@@ -274,6 +288,8 @@ USE manageme;
 -- select * from property
 -- select * from owner
 -- select * from user
+-- select * from manger_employee
+-- select * from user_type
 -- DELETE from user where user_id = 7
 -- DELETE from property_user where user = 7
 -- DELETE from owner where o_id = 3
