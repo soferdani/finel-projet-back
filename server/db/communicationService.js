@@ -24,7 +24,8 @@ const communication = function () {
     });
   }
 
-  return sendMail 
+
+  return sendMail    
 }
 
 module.exports = communication

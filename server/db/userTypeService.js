@@ -46,3 +46,4 @@ const userTypeDBServices = function () {
 }
 
 module.exports = userTypeDBServices
+
