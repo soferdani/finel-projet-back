@@ -64,8 +64,7 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
-<<<<<<< HEAD
-=======
+
     cron.schedule('2 * * * *', async () => {
         let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
         let allBooking = []
@@ -90,8 +89,6 @@ const bookingDBServices = function () {
         }
         return allBooking
     })
-
->>>>>>> e948f0bddc5174d0fdbee05d4740f826d447b57c
 
     return {
         checkBooking,
