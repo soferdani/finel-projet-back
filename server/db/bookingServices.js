@@ -9,10 +9,8 @@ const bookingDBServices = function () {
         let query = `select id,
          start_date as startDate,
          end_date as endDate,
-         guests, channel, nights,
-         first_name as firstName,
-         last_name as lastName,
-         img, phone, email, external_property_name
+         guests, channel, name,
+          phone, email, property
          from booking where property = ${propertyId};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
@@ -23,16 +21,13 @@ const bookingDBServices = function () {
             null,
             "${booking.startDate}",
             "${booking.endDate}",
-            ${booking.propertyId},
+            ${booking.property},
             ${booking.guests},
             "${booking.channel}",
-            ${booking.nights},
-            "${booking.firstName}",
-            "${booking.lastName}",
-            "${booking.img}",
-            "${booking.exPropertyName}",
             "${booking.phone}",
-            "${booking.email}");`
+            "${booking.email}",
+            "${booking.name}",
+            "${booking.externalId}");`
         const responseFromDB = await sequelize.query(query)
         return responseFromDB
     }

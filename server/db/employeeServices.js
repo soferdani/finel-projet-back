@@ -42,7 +42,7 @@ const employeeDBServices = function () {
             return response
         }
 
-    const getEmployeeAndProperty = async (propertyId, type, employeeId) => {
+    const getEmployeeAndProperty = async (propertyId, typeId, employeeId) => {
         let query
         if (employeeName) {
             query = `SELECT
@@ -63,9 +63,9 @@ const employeeDBServices = function () {
                             p.address as address
                             FROM property_user AS pu JOIN property AS p ON pu.property = p.id
                             JOIN user as u ON u.user_id = pu.user
-                            JOIN user_type AS ut ON ut.type_id = u.user_type
+
                             WHERE p.id = ${propertyId}
-                            AND ut.type =  '${type}'`
+                            AND u.user_type =  '${typeId}'`
         }
         const [reponse] = await sequelize.query(query)
         return reponse
