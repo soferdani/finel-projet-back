@@ -6,12 +6,6 @@ const moment = require('moment')
 const bookingDBServices = function () {
 
 
-    const checkBooking = async (bookingId) => { //tested
-        bookingExist = await sequelize
-            .query(`SELECT * FROM booking WHERE id = '${bookingId}'`)
-        return bookingExist[0].length === 0
-    }
-
     const getAllBooking = async (propertyId) => { //tested
         let query = `select id,
          start_date as startDate,
@@ -29,7 +23,7 @@ const bookingDBServices = function () {
             "${booking.id}",
             ${moment(booking.fromdate_c).format()}, 
             ${moment(booking.todate_c).format()},
-            (select id from property where name = '${booking.CHINGEMEEE}'),
+            (select id from property where name = '${booking.villa_name}'),
             ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
             "${booking.lead_source}",
             "${booking.phone_mobile}",
@@ -92,7 +86,6 @@ const bookingDBServices = function () {
     // })
 
     return {
-        checkBooking,
         saveBooking,
         updateBooking,
         getAllBooking,

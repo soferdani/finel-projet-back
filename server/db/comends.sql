@@ -1,7 +1,27 @@
 USE manageme;
 
 
-select * from manger_employee;
+-- select * from property_user;
+
+
+
+-- select * from user where user_type = 1
+
+ALTER TABLE user ADD api_getway text; 
+-- select * from user;
+-- insert into property_user values (
+--     31,
+--     2
+-- );
+
+-- select email, first_name as employeeName, p.name as propertyName, p.address as address
+--         from user as u join property_user as pu 
+--         on u.user_id = pu.user
+--         join property as p on p.id = pu.property
+--         where pu.property = 2
+--         and u.user_type = 4;
+
+
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
