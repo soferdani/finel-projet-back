@@ -5,6 +5,12 @@ const moment = require('moment')
 
 const bookingDBServices = function () {
 
+    const checkBooking = async (bookingId) => { //tested
+        bookingExist = await sequelize
+            .query(`SELECT * FROM booking WHERE id = '${bookingId}'`)
+        return bookingExist[0].length === 0
+    }
+
     const getAllBooking = async (propertyId) => { //tested
         let query = `select id,
          start_date as startDate,
@@ -19,22 +25,19 @@ const bookingDBServices = function () {
     }
 
     const saveBooking = async (booking) => { //tested
-        const query = `INSERT INTO booking VALUES(
-            null,
-            "${booking.startDate}",
-            "${booking.endDate}",
-            ${booking.propertyId},
-            ${booking.guests},
-            "${booking.channel}",
-            ${booking.nights},
-            "${booking.firstName}",
-            "${booking.lastName}",
-            "${booking.img}",
-            "${booking.exPropertyName}",
-            "${booking.phone}",
-            "${booking.email}");`
-        const responseFromDB = await sequelize.query(query)
-        return responseFromDB
+        let query = `insert into booking values (
+            "${booking.id}",
+            ${moment(booking.fromdate_c).format()}, 
+            ${moment(booking.todate_c).format()},
+            (select id from property where name = '${booking.CHINGEMEEE}'),
+            ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
+            "${booking.lead_source}",
+            "${booking.phone_mobile}",
+            "${booking.email}",
+            "${booking.name}"                
+        );`
+        const newBooking = await sequelize.query(query)
+        return newBooking
     }
 
     const updateBooking = async (booking, id) => {
@@ -61,6 +64,8 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
+<<<<<<< HEAD
+=======
     cron.schedule('2 * * * *', async () => {
         let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
         let allBooking = []
@@ -86,8 +91,10 @@ const bookingDBServices = function () {
         return allBooking
     })
 
+>>>>>>> e948f0bddc5174d0fdbee05d4740f826d447b57c
 
     return {
+        checkBooking,
         saveBooking,
         updateBooking,
         getAllBooking,
