@@ -25,6 +25,7 @@ USE manageme;
 
 
 
+
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
 -- ALTER TABLE booking DROP img;
@@ -42,6 +43,8 @@ USE manageme;
 
 -- drop TABLE maneger;
 
+
+
 -- SELECT type from user_type where type_id = 1;
 
 -- create database mangeme2 ;
@@ -54,7 +57,7 @@ USE manageme;
 -- );
 
 -- insert into property_user values(33, 2);
-select * from owner
+-- select * from owner
 
 -- insert into manger_employee values (
 --     1,
