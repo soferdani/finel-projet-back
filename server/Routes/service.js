@@ -21,13 +21,6 @@ router.post('/service-create', async (req, res) => {
     res.send(id)
 })
 
-// router.put('/service/:id', async (req, res) => {
-//     const { id } = req.params
-//     const service = req.body
-//     const saved = await DBServices.updateService(service, id)
-//     res.send(saved)
-// })
-
 router.delete('/service/:propertyId/:userId', async (req, res) => {
     const { propertyId } = req.params
     const { userId } = req.params

@@ -20,8 +20,8 @@ const bookingDBServices = function () {
     const saveBooking = async (booking) => { //tested
         let query = `insert into booking values (
             null,
-            ${moment(booking.fromdate_c).format()}, 
-            ${moment(booking.todate_c).format()},
+            '${moment(booking.fromdate_c).format()}',
+            '${moment(booking.todate_c).format()}',
             (select id from property where name = '${booking.villa_name}'),
             ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
             "${booking.lead_source}",
@@ -29,6 +29,23 @@ const bookingDBServices = function () {
             "${booking.email}",
             "${booking.name}",
             "${booking.id}"
+        );`
+        const newBooking = await sequelize.query(query)
+        return newBooking
+    }
+
+    const saveMeeting = async (booking) => { //tested
+        let query = `insert into booking values (
+            null,
+            '${booking.startDate}',
+            '${booking.endDate}',
+            (select id from property where name = '${booking.property}'),
+            1,
+            null,
+            null,
+            null,
+            "${booking.name}",
+            null
         );`
         const newBooking = await sequelize.query(query)
         return newBooking
@@ -58,7 +75,7 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
-    
+
 
     // cron.schedule('2 * * * *', async () => {
     //     let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
@@ -87,6 +104,7 @@ const bookingDBServices = function () {
 
     return {
         saveBooking,
+        saveMeeting,
         updateBooking,
         getAllBooking,
         removeBooking

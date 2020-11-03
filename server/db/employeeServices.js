@@ -17,9 +17,21 @@ const employeeDBServices = function () {
     }
 
     const saveEmployee = async (data) => {
+        const addManagerEmployee = `INSERT INTO manger_employee VALUES(
+           (SELECT user_id
+            FROM user AS u JOIN property_user AS pu ON pu.user = u.user_id
+            where pu.property = ${data.property}
+            AND u.user_type = 1),
+        ${data.user});
+        INSERT INTO property_user VALUES(
+            ${data.user},
+        ${data.property});`
+        await sequelize.query(addManagerEmployee)
+
         const query = `INSERT INTO property_user VALUES(
             ${data.user},
         ${data.property})`
+
         const id = await sequelize.query(query)
         return id
     }
@@ -65,7 +77,7 @@ const employeeDBServices = function () {
                             JOIN user as u ON u.user_id = pu.user
 
                             WHERE p.id = ${propertyId}
-                            AND u.user_type =  '${typeId}'`
+                            AND u.user_type =  ${typeId}`
         }
         const [reponse] = await sequelize.query(query)
         return reponse
@@ -93,10 +105,17 @@ const employeeDBServices = function () {
             return reponse
         }
 
-    const deleteEmployee = async (userId, propertyId) => {
+    const removeEmployeeFromProperty = async (userId, propertyId) => {
         const [responseFromDB] = await sequelize.query(`DELETE FROM property_user
-        WHERE property = ${propertyId}
-        AND user = ${userId}`)
+        WHERE manager_id = ${propertyId}
+        AND employee_id = ${userId}`)
+        return responseFromDB
+    }
+
+    const deleteEmployee = async (employeeId, managerId) => {
+        const [responseFromDB] = await sequelize.query(`DELETE FROM manger_employee
+        WHERE manager_id = ${managerId}
+        AND employee_id = ${employeeId}`)
         return responseFromDB
     }
 
@@ -105,7 +124,9 @@ const employeeDBServices = function () {
         saveEmployee,
         saveAndCreateEmployee,
         getEmployeeAndProperty,
-        deleteEmployee
+        addBookingServices,
+        deleteEmployee,
+        removeEmployeeFromProperty
     }
 }
 

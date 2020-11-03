@@ -1,13 +1,22 @@
 USE manageme;
 
 
+select * from user;
+
+
+-- INSERT INTO manger_employee VALUES(
+--            1,
+--         33);
+-- select * from manger_employee;
 -- select * from property_user;
 
-
-
 -- select * from user where user_type = 1
-
-ALTER TABLE user ADD api_getway text; 
+-- UPDATE owner
+-- set name = 'Rashid	Jamal',
+-- phone = '3624925345'
+-- WHERE o_id = 4;
+-- select * from owner
+-- ALTER TABLE user ADD api_getway text;
 -- select * from user;
 -- insert into property_user values (
 --     31,
@@ -15,7 +24,7 @@ ALTER TABLE user ADD api_getway text;
 -- );
 
 -- select email, first_name as employeeName, p.name as propertyName, p.address as address
---         from user as u join property_user as pu 
+--         from user as u join property_user as pu
 --         on u.user_id = pu.user
 --         join property as p on p.id = pu.property
 --         where pu.property = 2
@@ -52,7 +61,6 @@ ALTER TABLE user ADD api_getway text;
 -- );
 
 -- insert into property_user values(33, 2);
-select * from owner
 
 -- insert into manger_employee values (
 --     1,
