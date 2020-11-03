@@ -4,8 +4,6 @@ const nodemailer = require("nodemailer");
 const communication = function () {
 
   async function sendMail(mail, sender, text) {
-    console.log(mail + " " + sender + " " + text);
-    console.log(process.env.EMAIL + " " + process.env.EMAIL_PASS);
 
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -25,7 +23,7 @@ const communication = function () {
   }
 
 
-  return sendMail    
+  return {sendMail}    
 }
 
 module.exports = communication

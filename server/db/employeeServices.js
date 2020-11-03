@@ -63,9 +63,8 @@ const employeeDBServices = function () {
                             p.address as address
                             FROM property_user AS pu JOIN property AS p ON pu.property = p.id
                             JOIN user as u ON u.user_id = pu.user
-
                             WHERE p.id = ${propertyId}
-                            AND u.user_type =  '${typeId}'`
+                            AND u.user_type =  ${typeId}`
         }
         const [reponse] = await sequelize.query(query)
         return reponse

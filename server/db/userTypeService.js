@@ -11,7 +11,6 @@ const userTypeDBServices = function () {
             query = `SELECT type, type_id as id from user_type;`
         }
         const result = await sequelize.query(query)
-        console.log(result);
         return result
     }
 

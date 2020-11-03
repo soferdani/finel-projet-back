@@ -13,7 +13,8 @@ router.get('/todos/:id', async (req, res) => {
 router.post('/todo', async (req, res) => {
     const todo = req.body
     const id = await DBServices.saveTodo(todo)
-    const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.typeId, todo.employeeId)
+    const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.type, todo.serviceProvider)
+    
     details.forEach(d => {
         const text = `Hello ${d.employeeName},
         you got a new task: ${todo.task}
