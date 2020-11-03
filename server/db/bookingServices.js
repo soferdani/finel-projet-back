@@ -17,6 +17,7 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
+    
     const saveBooking = async (booking) => { //tested
         let query = `insert into booking values (
             null,

@@ -1,27 +1,6 @@
 USE manageme;
 
 
-select * from user;
-
-
--- INSERT INTO manger_employee VALUES(
---            1,
---         33);
--- select * from manger_employee;
--- select * from property_user;
-
--- select * from user where user_type = 1
--- UPDATE owner
--- set name = 'Rashid	Jamal',
--- phone = '3624925345'
--- WHERE o_id = 4;
--- select * from owner
--- ALTER TABLE user ADD api_getway text;
--- select * from user;
--- insert into property_user values (
---     31,
---     2
--- );
 
 -- select email, first_name as employeeName, p.name as propertyName, p.address as address
 --         from user as u join property_user as pu
@@ -29,6 +8,7 @@ select * from user;
 --         join property as p on p.id = pu.property
 --         where pu.property = 2
 --         and u.user_type = 4;
+
 
 
 
@@ -49,6 +29,8 @@ select * from user;
 
 -- drop TABLE maneger;
 
+
+
 -- SELECT type from user_type where type_id = 1;
 
 -- create database mangeme2 ;
@@ -61,6 +43,9 @@ select * from user;
 -- );
 
 -- insert into property_user values(33, 2);
+
+-- select * from owner
+
 
 -- insert into manger_employee values (
 --     1,

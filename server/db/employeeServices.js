@@ -56,7 +56,7 @@ const employeeDBServices = function () {
 
     const getEmployeeAndProperty = async (propertyId, typeId, employeeId) => {
         let query
-        if (employeeName) {
+        if (employeeId) {
             query = `SELECT
                 u.first_name as employeeName,
                 u.email as email,
@@ -65,7 +65,7 @@ const employeeDBServices = function () {
                 p.address as address
                 FROM property AS p, user as u
                 WHERE p.id = ${propertyId}
-                AND u.user_id =  '${employeeId}'`
+                AND u.user_id =  ${employeeId}`
         } else {
             query = `SELECT
                             u.first_name as employeeName,
