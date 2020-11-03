@@ -1,7 +1,6 @@
 USE manageme;
 
 
-
 -- select email, first_name as employeeName, p.name as propertyName, p.address as address
 --         from user as u join property_user as pu
 --         on u.user_id = pu.user
@@ -9,9 +8,8 @@ USE manageme;
 --         where pu.property = 2
 --         and u.user_type = 4;
 
-
-
-
+--  DELETE FROM user where user_id = 46;
+SELECT * FROM manger_employee
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
 -- ALTER TABLE booking DROP img;

@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 // } , 10000)
 
 
-app.use('/', user, property, todo, booking, service,userType )
+app.use('/', user, property, todo, booking, service, userType )
 
 
 const port = 3001
