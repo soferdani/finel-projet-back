@@ -19,7 +19,7 @@ const todoDBServices = function () {
         null,
         '${todo.task}',
         ${todo.property},
-        (SELECT type_id FROM user_type WHERE type = '${todo.type}'),
+        ${todo.type},
         '${moment().format('YYYY-MM-DD')}',
         false,
         '${todo.img}',
