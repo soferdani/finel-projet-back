@@ -1,7 +1,6 @@
 USE manageme;
 
 
--- select * from booking;
 
 
 -- ALTER TABLE booking DROP first_name;
@@ -13,7 +12,7 @@ USE manageme;
 
 
 -- alter TABLE booking add name varchar(60);
--- 
+--
 -- insert INTO user_type values (
 --     null,
 --     "Pool"
@@ -34,7 +33,8 @@ USE manageme;
 --     FOREIGN KEY (employee_id) REFERENCES user(user_id)
 -- );
 
--- select * from user;
+-- insert into property_user values(33, 2);
+select * from owner
 
 -- insert into manger_employee values (
 --     1,
@@ -284,10 +284,13 @@ USE manageme;
 
 
 -- insert into USER_TYPE values (null, "elctricety");
-
-
+-- ALTER TABLE booking ADD external_id text;
+-- ALTER TABLE booking modify name text;
+-- SELECT * FROM booking
+-- SELECT * FROM user
 -- ALTER TABLE USER ADD avater text;
-
+-- insert into user_type values(null, 'Concierge')
+-- delete from user_type where type_id = 9
 
 --
 -- select * from property_user
