@@ -1,15 +1,17 @@
 const sequelize = require('./sqlConnection')
 
 
+
 const userTypeDBServices = function () {
     const getUserType = async (id) => { 
         let query
         if (id) {  
-            query = `SELECT type from user_type where type_id = ${id};`
+            query = `SELECT type, type_id as id  from user_type where type_id = ${id};`
         } else {
-            query = `SELECT type from user_type;`
+            query = `SELECT type, type_id as id from user_type;`
         }
         const result = await sequelize.query(query)
+        console.log(result);
         return result
     }
 
@@ -44,3 +46,4 @@ const userTypeDBServices = function () {
 }
 
 module.exports = userTypeDBServices
+
