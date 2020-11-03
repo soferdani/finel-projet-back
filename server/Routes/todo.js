@@ -13,15 +13,17 @@ router.get('/todos/:id', async (req, res) => {
 router.post('/todo', async (req, res) => {
     const todo = req.body
     const id = await DBServices.saveTodo(todo)
-    const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.type, todo.serviceProvider)
+    if(todo.typeId !== 1) {
+        const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.type.id, todo.serviceProvider)
+        details.forEach(d => {
+            const text = `Hello ${d.employeeName},
+            you got a new task: ${todo.task}
+            at ${d.propertyName}
+            located in ${d.address}`
+            communication.sendMail(d.email, null, text)
+        })
+    }
     
-    details.forEach(d => {
-        const text = `Hello ${d.employeeName},
-        you got a new task: ${todo.task}
-        at ${d.propertyName}
-        located in ${d.address}`
-        communication.sendMail(d.email, null, text)
-    })
     res.send(id)
 })
 

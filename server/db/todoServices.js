@@ -19,7 +19,7 @@ const todoDBServices = function () {
         null,
         '${todo.task}',
         ${todo.property},
-        ${todo.type},
+        ${todo.typeId},
         '${moment().format('YYYY-MM-DD')}',
         false,
         '${todo.img}',
