@@ -1,7 +1,8 @@
 USE manageme;
 
 
-select * from booking;
+-- select * from booking;
+
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
@@ -19,6 +20,8 @@ select * from booking;
 -- );
 
 -- drop TABLE maneger;
+
+
 
 -- SELECT type from user_type where type_id = 1;
 

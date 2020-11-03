@@ -7,6 +7,11 @@ router.get('/properties/:id', async (req, res) => {
     const properties = await DBServices.getProperties(id)
     res.send(properties)
 })
+router.get('/properties/owners/:id', async (req, res) => {
+    const { id } = req.params
+    const ownerList = await DBServices.getOwnerList(id)
+    res.send(ownerList)
+})
 
 router.post('/property', async (req, res) => {
     const propertie = req.body
