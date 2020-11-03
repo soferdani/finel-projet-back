@@ -14,8 +14,7 @@ router.get('/booking/:propertyId', async (req, res) => {
 
 router.post('/booking', async (req, res) => {
     const bookingInfo = req.body
-    const nBooking = await DBServices.saveBooking(bookingInfo)
-    // await DBServices.addBookingServices(bookingInfo)
+    const nBooking = await DBServices.saveMeeting(bookingInfo)
     res.send(nBooking)
 })
 
@@ -37,10 +36,10 @@ router.delete('/booking/:bookingId', async (req, res) => {
 //     let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
 //     let allBooking = []
 //     for (let booking of newBookingFromAPI.data.data) {
-//         let bookingExist = await DBServices.checkBooking(booking.id) 
-//         if (bookingExist) {  
+//         let bookingExist = await DBServices.checkBooking(booking.id)
+//         if (bookingExist) {
 //             const newBooking = await DBServices.saveBooking(booking)
-            
+
 //             allBooking.push(newBooking)
 //         }
 //     }

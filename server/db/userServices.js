@@ -24,7 +24,7 @@ const userDBServices = function () {
             '${user.email}',
             '${user.phone}',
             '${moment().format('YYYY-MM-DD')}',
-            '${user.type}',
+            '${user.userType}',
             'https://storage.jewheart.com/content/users/avatars/2928/avatar_2928_500.jpg?1480517568');`
         const id = await sequelize.query(query)
         return id
