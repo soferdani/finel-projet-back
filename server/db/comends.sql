@@ -2,12 +2,14 @@ USE manageme;
 
 
 -- select * from property_user;
+-- select * from user;
 
-
+-- select * from property_user;
+-- select * from manger_employee;
 
 -- select * from user where user_type = 1
 
-ALTER TABLE user ADD api_getway text; 
+-- ALTER TABLE user ADD api_getway text; 
 -- select * from user;
 -- insert into property_user values (
 --     31,
