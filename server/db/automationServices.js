@@ -3,10 +3,6 @@ const sequelize = require('./sqlConnection')
 
 const automationDBServices = function () { 
 
-    
-
-
-    
 
     const checkBooking = async (bookingId) => { //tested
         bookingExist = await sequelize

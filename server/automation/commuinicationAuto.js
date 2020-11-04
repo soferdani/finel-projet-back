@@ -43,18 +43,17 @@ const automationForBookingService = async function () {
 
   const automationForBookingLeads = async function () {
 
-    
-
     let newBookingFromAPI = await axios.get('http://97.107.140.152/bookings_last_hour.php')
     let allBooking = []
 
     for (let booking of newBookingFromAPI.data.Data) {
     
-      let bookingNotExist = await DBServices.checkBooking(booking.id)
+      let bookingNotExist = await DBServices.checkBooking(booking.id) //check if booking exist
       if (bookingNotExist) {
-
+      
         console.log(booking);
-        // const newBooking = await bookingDBServices.saveBooking(booking)
+        const newBooking = await bookingDBServices.saveBooking(booking)
+        console.log(newBooking);
         // allBooking.push(newBooking)
       }
     }

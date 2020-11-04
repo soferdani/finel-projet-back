@@ -19,12 +19,15 @@ const bookingDBServices = function () {
 
     
     const saveBooking = async (booking) => { //tested
+        // let test = parseInt(booking.adults_c) + parseInt(booking.children_c)
+        // if (!booking.adults_c )
+        // console.log(booking.adults_c);
         let query = `insert into booking values (
             null,
             '${moment(booking.fromdate_c).format()}',
             '${moment(booking.todate_c).format()}',
             (select id from property where name = '${booking.villa_name}'),
-            ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
+            null,
             "${booking.lead_source}",
             "${booking.phone_mobile}",
             "${booking.email}",
