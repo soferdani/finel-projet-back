@@ -49,8 +49,8 @@ group by channel; */
 
 -- drop TABLE maneger;
 
-
-
+-- Insert Into manger_employee values(1, 53);
+-- select * from manger_employee;
 -- SELECT type from user_type where type_id = 1;
 
 -- create database mangeme2 ;

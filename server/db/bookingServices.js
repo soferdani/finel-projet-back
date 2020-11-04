@@ -17,7 +17,7 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
-    
+
     const saveBooking = async (booking) => { //tested
         // let test = parseInt(booking.adults_c) + parseInt(booking.children_c)
         // if (!booking.adults_c )
@@ -43,11 +43,11 @@ const bookingDBServices = function () {
             null,
             '${booking.startDate}',
             '${booking.endDate}',
-            (select id from property where name = '${booking.property}'),
+            ${booking.property},
             1,
             null,
-            null,
-            null,
+            "${booking.email}",
+            "${booking.phone}",
             "${booking.name}",
             null
         );`
