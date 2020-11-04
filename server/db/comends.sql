@@ -1,12 +1,118 @@
 USE manageme;
+/* 
+select id from property where name = 'MA-05 Casa Fantastica' */
 
--- select * from booking;
 
--- UPDATE booking set end_data = "2020-04-26T14:30:00.000Z" where id = 3;
+/* select * from property; */
+
+
+/* select count(b.id),channel 
+from booking as b join property as p
+on b.property = p.id 
+join property_user as pu on pu.property = p.id
+
+group by channel; */
+
+select channel, count(b.id) as numberOfBooking
+        from user as u join property_user as pu
+        on u.user_id = pu.user
+        join property as p on p.id = pu.property
+        join booking as b on b.property = p.id
+        where  u.user_id = 1
+        group by channel;
+
+
+/* select * from user; */
+
+/* select count(b.id),channel 
+from user as u join property_user as pu
+on u.user_id = pu.user
+join property as p on p.id = pu.property
+join booking as b on b.property = p.id
+where  u.user_id = 9
+group by channel; */
+
+-- ALTER TABLE booking DROP first_name;
+-- ALTER TABLE booking DROP last_name;
+-- ALTER TABLE booking DROP img;
+-- ALTER TABLE booking DROP external_property_name;
+-- ALTER TABLE booking modify COLUMN id varchar(110);
+
+
+
+-- alter TABLE booking add name varchar(60);
+--
+-- insert INTO user_type values (
+--     null,
+--     "Pool"
+-- );
+
+-- drop TABLE maneger;
+
+-- Insert Into manger_employee values(1, 53);
+-- select * from manger_employee;
+-- SELECT type from user_type where type_id = 1;
+
+-- create database mangeme2 ;
+
+-- create TABLE manger_employee (
+--     manager_id int,
+--     employee_id int,
+--     FOREIGN KEY (manager_id) REFERENCES user(user_id),
+--     FOREIGN KEY (employee_id) REFERENCES user(user_id)
+-- );
+
+-- insert into property_user values(33, 2);
+
+-- select * from owner
+
+
+-- insert into manger_employee values (
+--     1,
+--     4
+-- )
+
+-- create TABLE maneger (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     first_name VARCHAR(40),
+--     last_name VARCHAR(40),
+--     img text,
+--     email VARCHAR(80),
+--     phone VARCHAR(10),
+--     datejoin datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     user_type INT DEFAULT 1,
+--     FOREIGN KEY (user_type) REFERENCES user_type(type_id)
+-- );
+
+-- select * from user;
+
+-- select user_id as id, first_name as firstName, last_name as lastName
+-- from user as u join manger_employee as me
+-- on u.user_id = me.employee_id
+-- where me.manager_id = 2;
+
+-- alter TABLE booking add type varchar(70);
+
+-- select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin, type, img
+-- from user as u join manger_employee as me
+-- on u.user_id = me.employee_id
+-- join user_type as ut
+-- on u.user_type = ut.type_id
+-- where me.manager_id = 1;
+
+
+-- DELETE from manger_employee where manager_id = 1 and employee_id = 3;
+
+-- DELETE from user_type where type_id =
+
+-- select * from user;
+
+-- UPDATE user_type set type = '';
 
 -- UPDATE booking
 -- SET g_first_name = 'dudi'
 -- WHERE id = 4;
+
 
 -- SELECT u.email, u.phone, p.name, p.address
 --                         FROM property_user AS pu JOIN property AS p ON pu.property = p.id
@@ -17,8 +123,10 @@ USE manageme;
 
 -- select * from property_user
 -- select * from user
-select * from user_type
+-- select * from user_type
 -- select * from property
+-- select * from user;
+
 
 -- ALTER TABLE property
 -- RENAME COLUMN adress to address;
@@ -37,6 +145,7 @@ select * from user_type
 -- ADD name text;
 
 -- select * from booking
+-- select * from user_type;
 
 -- UPDATE booking
 
@@ -206,16 +315,21 @@ select * from user_type
 
 
 -- insert into USER_TYPE values (null, "elctricety");
-
-
+-- ALTER TABLE booking ADD external_id text;
+-- ALTER TABLE booking modify name text;
+-- SELECT * FROM booking
+-- SELECT * FROM user
 -- ALTER TABLE USER ADD avater text;
-
+-- insert into user_type values(null, 'Concierge')
+-- delete from user_type where type_id = 9
 
 --
 -- select * from property_user
 -- select * from property
 -- select * from owner
 -- select * from user
+-- select * from manger_employee
+-- select * from user_type
 -- DELETE from user where user_id = 7
 -- DELETE from property_user where user = 7
 -- DELETE from owner where o_id = 3

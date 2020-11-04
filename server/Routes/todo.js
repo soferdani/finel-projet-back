@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const DBServices = require('../db/todoServices')()
 const employeeDBServices = require('../db/employeeServices')()
+const communication = require('../db/communicationService')()
 
 router.get('/todos/:id', async (req, res) => {
     const { id } = req.params
@@ -12,11 +13,17 @@ router.get('/todos/:id', async (req, res) => {
 router.post('/todo', async (req, res) => {
     const todo = req.body
     const id = await DBServices.saveTodo(todo)
-    const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.type)
-    // nodemailer.send{
-    //     email: details.email;
-    //     text: `hello we would like you to: ${todo.task} to property ${details.name} ${details.address}`
-    // }
+    if(todo.typeId !== 1) {
+        const details = await employeeDBServices.getEmployeeAndProperty(todo.property, todo.type.id, todo.serviceProvider)
+        details.forEach(d => {
+            const text = `Hello ${d.employeeName},
+            you got a new task: ${todo.task}
+            at ${d.propertyName}
+            located in ${d.address}`
+            communication.sendMail(d.email, null, text)
+        })
+    }
+    
     res.send(id)
 })
 

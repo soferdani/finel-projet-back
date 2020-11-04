@@ -27,4 +27,5 @@ router.delete('/user/:id', async (req, res) => {
     res.send(deleted)
 })
 
+
 module.exports = router

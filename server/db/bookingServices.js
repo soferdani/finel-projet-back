@@ -1,37 +1,58 @@
 const sequelize = require('./sqlConnection')
+const axios = require('axios')
+const cron = require('node-cron')
+const moment = require('moment')
 
 const bookingDBServices = function () {
+
 
     const getAllBooking = async (propertyId) => { //tested
         let query = `select id,
          start_date as startDate,
          end_date as endDate,
-         guests, channel, nights,
-         first_name as firstName,
-         last_name as lastName,
-         img, phone, email, external_property_name
+         guests, channel, name,
+          phone, email, property
          from booking where property = ${propertyId};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
 
+
     const saveBooking = async (booking) => { //tested
-        const query = `INSERT INTO booking VALUES(
+        // let test = parseInt(booking.adults_c) + parseInt(booking.children_c)
+        // if (!booking.adults_c )
+        // console.log(booking.adults_c);
+        let query = `insert into booking values (
             null,
-            "${booking.startDate}",
-            "${booking.endDate}",
-            ${booking.propertyId},
-            ${booking.guests},
-            "${booking.channel}",
-            ${booking.nights},
-            "${booking.firstName}",
-            "${booking.lastName}",
-            "${booking.img}",
-            "${booking.exPropertyName}",
+            '${moment(booking.fromdate_c).format()}',
+            '${moment(booking.todate_c).format()}',
+            (select id from property where name = '${booking.villa_name}'),
+            null,
+            "${booking.lead_source}",
+            "${booking.phone_mobile}",
+            "${booking.email}",
+            "${booking.name}",
+            "${booking.id}"
+        );`
+        const newBooking = await sequelize.query(query)
+        return newBooking
+    }
+
+    const saveMeeting = async (booking) => { //tested
+        let query = `insert into booking values (
+            null,
+            '${booking.startDate}',
+            '${booking.endDate}',
+            ${booking.property},
+            1,
+            null,
+            "${booking.email}",
             "${booking.phone}",
-            "${booking.email}");`
-        const responseFromDB = await sequelize.query(query)
-        return responseFromDB
+            "${booking.name}",
+            null
+        );`
+        const newBooking = await sequelize.query(query)
+        return newBooking
     }
 
     const updateBooking = async (booking, id) => {
@@ -58,8 +79,36 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
+
+
+    // cron.schedule('2 * * * *', async () => {
+    //     let newBookingFromAPI = axios.get('http://97.107.140.152/bookings_last_hour.php') //FIXME: TO MAKE SURE
+    //     let allBooking = []
+    //     for (let booking of newBookingFromAPI.data.data) {
+    //         let bookingExist = await sequelize
+    //             .query(`SELECT * FROM booking WHERE id = '${booking.id}'`)
+    //         if (bookingExist[0].length === 0) {
+    //             let query = `insert into booking values (
+    //                 "${booking.id}",
+    //                 ${moment(booking.fromdate_c).format()},
+    //                 ${moment(booking.todate_c).format()},
+    //                 (select id from property where name = '${booking.CHINGEMEEE}'),
+    //                 ${parseInt(booking.adults_c) + parseInt(booking.children_c)},
+    //                 "${booking.lead_source}",
+    //                 "${booking.phone_mobile}",
+    //                 "${booking.email}",
+    //                 "${booking.name}"
+    //             );`
+    //             const newBooking = await sequelize.query(query)
+    //             allBooking.push(newBooking)
+    //         }
+    //     }
+    //     return allBooking
+    // })
+
     return {
         saveBooking,
+        saveMeeting,
         updateBooking,
         getAllBooking,
         removeBooking

@@ -4,8 +4,9 @@ const moment = require('moment')
 const todoDBServices = function () {
 
     const getTodos = async (id) => {
-        const query = `SELECT t.t_id, task, complete, date, ut.type, img
-        FROM todo AS t JOIN user_type AS ut
+        const query = `SELECT t.t_id, task, complete, date, ut.type, t.type as typeId, img, serviceProvider
+        FROM todo AS t 
+        JOIN user_type AS ut
         on t.type = ut.type_id
         WHERE t.property = ${id};`
         const [responseFromDB] = await sequelize.query(query)
@@ -13,14 +14,16 @@ const todoDBServices = function () {
     }
 
     const saveTodo = async (todo) => {
+        console.log(todo)
         const query = `INSERT INTO todo VALUES(
         null,
         '${todo.task}',
         ${todo.property},
-        (SELECT type_id FROM user_type WHERE type='${todo.type}'),
+        ${todo.typeId},
         '${moment().format('YYYY-MM-DD')}',
         false,
-        '${todo.img}');`
+        '${todo.img}',
+        ${todo.serviceProvider});`
         const id = await sequelize.query(query)
         return id
     }

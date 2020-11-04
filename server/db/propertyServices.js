@@ -15,20 +15,33 @@ const propertyDBServices = function () {
         return responseFromDB
     }
 
+    const getOwnerList = async (id) => {
+        const query = `SELECT o.o_id as id, o.name as name ,o.phone as phone, o.country as country, o.email as email
+        FROM user AS u JOIN property_user AS pu
+        on u.user_id = pu.user JOIN property AS p on p.id = pu.property
+        jOIN owner AS o on p.owner = o.o_id
+        WHERE u.user_id =${id}
+        GROUP BY o.o_id`
+        const [responseFromDB] = await sequelize.query(query)
+        return responseFromDB
+    }
+
     const saveProperty = async (propertie) => {
-        if(!propertie.owner.id){
+
+        if (!propertie.owner.id) {
             const ownerQuery = `INSERT INTO owner VALUES(
                 null,
                 '${propertie.owner.name}',
                 '${propertie.owner.phone}',
                 '${propertie.owner.country}',
                 '${propertie.owner.email}')`
-                propertie.owner.id = await sequelize.query(ownerQuery)
-                propertie.owner.id = propertie.owner.id[0]
+            const res = await sequelize.query(ownerQuery)
+            console.log(res);
+            propertie.owner.id = res[0]
         }
         const query = `INSERT INTO property VALUES(
         null,
-        '${propertie.img}',
+        '${propertie.img ? propertie.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0rmNEiG8-Ek1lKTiuKi9Dhbi0EoqYqp5nCQ&usqp=CAU"}',
         '${propertie.address}',
         ${propertie.rooms},
         ${propertie.bathrooms},
@@ -40,11 +53,12 @@ const propertyDBServices = function () {
         ${propertie.owner.id},
         '${propertie.name}')`
         const propertyId = await sequelize.query(query)
+        console.log(propertyId);
         const joinQuery = `INSERT INTO property_user VALUES(
             ${propertie.manager},
             ${propertyId[0]})`
         await sequelize.query(joinQuery)
-        return [propertyId[0], propertie.owner.id[0]]
+        return [propertyId[0], propertie.owner.id]
     }
 
     const updateProperty = async (propertyData, id) => {
@@ -74,6 +88,7 @@ const propertyDBServices = function () {
 
     return {
         getProperties,
+        getOwnerList,
         saveProperty,
         updateProperty,
         deleteProperty

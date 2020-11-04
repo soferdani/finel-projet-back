@@ -8,7 +8,8 @@ const userDBServices = function () {
         first_name as firstName,
         last_name as lastName,
         email, phone,
-        datejoin as dateJoin, type , img
+        datejoin as dateJoin, type , img,
+        user_type as typeId
         FROM user JOIN user_type ON user_type.type_id = user.user_type
         WHERE email = '${email}';`
         const [responseFromDB] = await sequelize.query(query)
@@ -23,11 +24,12 @@ const userDBServices = function () {
             '${user.email}',
             '${user.phone}',
             '${moment().format('YYYY-MM-DD')}',
-            '${user.type}',
+            ${user.userType},
             'https://storage.jewheart.com/content/users/avatars/2928/avatar_2928_500.jpg?1480517568');`
         const id = await sequelize.query(query)
         return id
     }
+
 
     const updateUser = async (id, userData) => {
         let query = `UPDATE user SET `
@@ -50,6 +52,7 @@ const userDBServices = function () {
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
+
 
     return {
         getUser,
