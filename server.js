@@ -43,16 +43,17 @@ const io = socketIO(server)
 const connections = [null, null];
 
 io.on('connection', (socket) => {
+  console.log('user is connected');
 
-  let playerIndex = -1;
-  for (var i in connections) {
-    if (connections[i] === null) {
-      playerIndex = i;
-    }
-  }
-  if (playerIndex == -1) return;
-  connections[playerIndex] = socket;
-  socket.emit('player-number', playerIndex);
+  // let playerIndex = -1;
+  // for (var i in connections) {
+  //   if (connections[i] === null) {
+  //     playerIndex = i;
+  //   }
+  // }
+  // if (playerIndex == -1) return;
+  // connections[playerIndex] = socket;
+  // socket.emit('user-number', playerIndex);
 
   socket.on('send', (msg) => {
     socket.broadcast.emit('send', msg);
@@ -62,8 +63,8 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('move', playerNum, direction);
   });
 
-  socket.on('disconnect', function() {
-    console.log(`Player ${playerIndex} Disconnected`);
-    connections[playerIndex] = null;
-  });
+  // socket.on('disconnect', function() {
+  //   console.log(`Player ${playerIndex} Disconnected`);
+  //   connections[playerIndex] = null;
+  // });
 })
