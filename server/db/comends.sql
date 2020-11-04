@@ -13,15 +13,24 @@ join property_user as pu on pu.property = p.id
 
 group by channel; */
 
+select channel, count(b.id) as numberOfBooking
+        from user as u join property_user as pu
+        on u.user_id = pu.user
+        join property as p on p.id = pu.property
+        join booking as b on b.property = p.id
+        where  u.user_id = 1
+        group by channel;
+
+
 /* select * from user; */
 
-select count(b.id),channel 
+/* select count(b.id),channel 
 from user as u join property_user as pu
 on u.user_id = pu.user
 join property as p on p.id = pu.property
 join booking as b on b.property = p.id
 where  u.user_id = 9
-group by channel;
+group by channel; */
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
