@@ -10,6 +10,8 @@ const userType = require('./server/Routes/userType')
 const analytics = require('./server/Routes/analytics')
 const auto = require('./server/automation/commuinicationAuto')()
 
+
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
