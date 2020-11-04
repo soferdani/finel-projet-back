@@ -21,7 +21,6 @@ app.use(function (req, res, next) {
 
 app.use('/', user, property, todo, booking, service)
 
-communication.sendSMS('+972523896679', '+972524201605', 'Test the twilio package')
 
 const port = 3001
 app.listen(port, function (req,res) {

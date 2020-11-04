@@ -1,6 +1,5 @@
 require('dotenv').config()
 const nodemailer = require("nodemailer");
-const twilio = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 
 const communication = function () {
 
@@ -25,17 +24,8 @@ const communication = function () {
     });
   }
 
-  async function sendSMS(phoneNum, sender, text) {
-    twilio.messages
-      .create({
-        body: 'Test the twilio package',
-        from: '+19382008816',
-        to: '+972524201605'
-      })
-      .then(message => console.log(message.sid)).done()
-  }
 
-  return { sendMail, sendSMS }
+  return { sendMail }
 }
 
 module.exports = communication

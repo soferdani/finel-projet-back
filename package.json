@@ -23,7 +23,6 @@
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.14",
-    "sequelize": "^6.3.5",
-    "twilio": "^3.50.0"
+    "sequelize": "^6.3.5"
   }
 }
