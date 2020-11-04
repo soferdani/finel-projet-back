@@ -1,15 +1,27 @@
 USE manageme;
+/* 
+select id from property where name = 'MA-05 Casa Fantastica' */
 
-select id from property where name = 'MA-05 Casa Fantastica'
+
+/* select * from property; */
 
 
+/* select count(b.id),channel 
+from booking as b join property as p
+on b.property = p.id 
+join property_user as pu on pu.property = p.id
 
--- select email, first_name as employeeName, p.name as propertyName, p.address as address
---         from user as u join property_user as pu
---         on u.user_id = pu.user
---         join property as p on p.id = pu.property
---         where pu.property = 2
---         and u.user_type = 4;
+group by channel; */
+
+/* select * from user; */
+
+select count(b.id),channel 
+from user as u join property_user as pu
+on u.user_id = pu.user
+join property as p on p.id = pu.property
+join booking as b on b.property = p.id
+where  u.user_id = 9
+group by channel;
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
