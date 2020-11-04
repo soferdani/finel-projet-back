@@ -1,5 +1,7 @@
 USE manageme;
 
+select id from property where name = 'MA-05 Casa Fantastica'
+
 
 
 -- select email, first_name as employeeName, p.name as propertyName, p.address as address
@@ -8,7 +10,6 @@ USE manageme;
 --         join property as p on p.id = pu.property
 --         where pu.property = 2
 --         and u.user_type = 4;
-
 
 -- ALTER TABLE booking DROP first_name;
 -- ALTER TABLE booking DROP last_name;
