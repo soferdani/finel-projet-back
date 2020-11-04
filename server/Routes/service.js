@@ -34,10 +34,11 @@ router.delete('/service/:propertyId/:userId', async (req, res) => {
 })
 
 
-router.delete('/useremployee', async (req, res) => {
-    const { managerId, employeeId } = req.body
-    let id = await DBServices.deleteEmployee(managerId,employeeId)
-    res.send(id)
+router.delete('/useremployee/:managerId/:serviceWorkerId', async (req, res) => {
+    const {managerId} = req.params
+    const {serviceWorkerId} = req.params
+    let id = await DBServices.deleteEmployee(managerId,serviceWorkerId)
+    res.send({serviceWorkerId})
 })
 
 module.exports = router

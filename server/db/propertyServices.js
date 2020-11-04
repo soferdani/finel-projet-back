@@ -41,7 +41,7 @@ const propertyDBServices = function () {
         }
         const query = `INSERT INTO property VALUES(
         null,
-        '${propertie.img}',
+        '${propertie.img ? propertie.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0rmNEiG8-Ek1lKTiuKi9Dhbi0EoqYqp5nCQ&usqp=CAU"}',
         '${propertie.address}',
         ${propertie.rooms},
         ${propertie.bathrooms},
