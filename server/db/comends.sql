@@ -1,30 +1,31 @@
 USE manageme;
-/* 
+/*
 select id from property where name = 'MA-05 Casa Fantastica' */
 
 
 /* select * from property; */
 
-
-/* select count(b.id),channel 
+-- insert into chet values(1 , 6 , "2020-11-04", "sup?");
+-- select * from chet;
+/* select count(b.id),channel
 from booking as b join property as p
-on b.property = p.id 
+on b.property = p.id
 join property_user as pu on pu.property = p.id
 
 group by channel; */
 
-select channel, count(b.id) as numberOfBooking
-        from user as u join property_user as pu
-        on u.user_id = pu.user
-        join property as p on p.id = pu.property
-        join booking as b on b.property = p.id
-        where  u.user_id = 1
-        group by channel;
+-- select channel, count(b.id) as numberOfBooking
+--         from user as u join property_user as pu
+--         on u.user_id = pu.user
+--         join property as p on p.id = pu.property
+--         join booking as b on b.property = p.id
+--         where  u.user_id = 1
+--         group by channel;
 
 
 /* select * from user; */
 
-/* select count(b.id),channel 
+/* select count(b.id),channel
 from user as u join property_user as pu
 on u.user_id = pu.user
 join property as p on p.id = pu.property
