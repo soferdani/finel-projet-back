@@ -60,10 +60,10 @@ io.on('connection', (socket) => {
   socket.on('send', async (msg) => {
     const query = `INSERT INTO message VALUES(
       null,
-      '${msg.sender}',
+      ${msg.sender},
       ${msg.getter},
       '${moment().format('YYYY-MM-DD')}',
-      ${msg.text});`
+      '${msg.text}');`
        const id = await sequelize.query(query)
        msg.id = id[0]
     socket.broadcast.emit('send', msg);
