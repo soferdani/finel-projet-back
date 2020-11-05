@@ -24,6 +24,13 @@ const employeeDBServices = function () {
         on u.user_type = ut.type_id
         where me.manager_id = ${managerId};`
         const [responseFromDB] = await sequelize.query(query)
+        for(let e of responseFromDB){
+            let messages = await sequelize.query(`SELECT m.*
+                FROM  message as m
+                        where( m.sender = ${managerId} or m.getter = ${managerId})
+                        AND (m.sender = ${e.id} or m.getter = ${e.id})`)
+            e.messages = messages[0]
+        }
         return responseFromDB
     }
 

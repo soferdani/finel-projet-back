@@ -2,6 +2,7 @@ USE manageme;
 /*
 select id from property where name = 'MA-05 Casa Fantastica' */
 
+-- drop table message
 
 /* select * from property; */
 
@@ -14,6 +15,13 @@ join property_user as pu on pu.property = p.id
 
 group by channel; */
 
+-- insert into message values(null, 1, 31, "2020-11-4", "hey you")
+SELECT m.*
+FROM  message as m
+        where( m.sender = 1 or m.getter = 1)
+        AND (m.sender = 6 or m.getter = 6)
+
+-- select * from message
 -- select channel, count(b.id) as numberOfBooking
 --         from user as u join property_user as pu
 --         on u.user_id = pu.user
