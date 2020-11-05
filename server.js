@@ -10,6 +10,8 @@ const userType = require('./server/Routes/userType')
 const analytics = require('./server/Routes/analytics')
 const auto = require('./server/automation/commuinicationAuto')()
 const socketIO = require('socket.io');
+const sequelize = require('./server/db/sqlConnection')
+const moment = require('moment')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -55,7 +57,15 @@ io.on('connection', (socket) => {
   // connections[playerIndex] = socket;
   // socket.emit('user-number', playerIndex);
 
-  socket.on('send', (msg) => {
+  socket.on('send', async (msg) => {
+    const query = `INSERT INTO message VALUES(
+      null,
+      '${msg.sender}',
+      ${msg.getter},
+      '${moment().format('YYYY-MM-DD')}',
+      ${msg.text});`
+       const id = await sequelize.query(query)
+       msg.id = id[0]
     socket.broadcast.emit('send', msg);
   })
 
