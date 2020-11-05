@@ -17,7 +17,8 @@ const employeeDBServices = function () {
     }
 
     const getEmployeesByManager = async(managerId) => {
-        const query = `select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin as dateJoin, type, img
+        const query = `select user_id as id, first_name as firstName, last_name as lastName, 
+        email, phone, datejoin as dateJoin, type, img, ut.type_id as typeId
         from user as u join manger_employee as me
         on u.user_id = me.employee_id
         join user_type as ut
