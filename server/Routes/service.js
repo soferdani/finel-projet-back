@@ -2,15 +2,16 @@ const express = require('express')
 const router = express.Router()
 const DBServices = require('../db/employeeServices')()
 
-router.get('/service/:id', async (req, res) => {
-    const { id } = req.params
-    const services = await DBServices.getEmployeesByProperty(id)
+router.get('/service/:propertyId/:userId', async (req, res) => {
+    const { propertyId } = req.params
+    const { userId } = req.params
+    const services = await DBServices.getEmployeesByProperty(propertyId, userId)
     res.send(services)
 })
 
-router.get('/useremployee/:managerId', async (req, res) => {
-    const { managerId } = req.params
-    const employees = await DBServices.getEmployeesByManager(managerId)
+router.get('/useremployee/:managerId/:typeId', async (req, res) => {
+    const { managerId, typeId } = req.params
+    const employees = await DBServices.getEmployeesByManager(managerId, typeId)
     res.send(employees)
 })
 
