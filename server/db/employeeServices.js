@@ -16,7 +16,6 @@ const employeeDBServices = function () {
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
-
     const getEmployeesByManager = async(managerId, typeId) => {
         let query
         if(typeId === '1'){
@@ -36,7 +35,6 @@ const employeeDBServices = function () {
             on u.user_type = ut.type_id
             where me.employee_id = ${managerId};`
         }
-
         const [responseFromDB] = await sequelize.query(query)
         for(let e of responseFromDB){
             let messages = await sequelize.query(`SELECT m.*
