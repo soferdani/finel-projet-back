@@ -23,7 +23,7 @@ router.post('/todo', async (req, res) => {
             communication.sendMail(d.email, null, text)
         })
     }
-    
+
     res.send(id)
 })
 
@@ -49,6 +49,7 @@ router.delete('/todo/:id', async (req, res) => {
 router.get('/todo/:userId', async (req, res) => {
     const { userId } = req.params
     const bringAllTodoForUser = await DBServices.bringAllTodoForServiceProv(userId)
+    console.log(bringAllTodoForUser);
     res.send(bringAllTodoForUser)
 })
 

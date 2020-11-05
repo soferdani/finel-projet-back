@@ -16,22 +16,22 @@ join property_user as pu on pu.property = p.id
 group by channel; */
 
 /* select * from user_type; */
-/* 
+/*
 select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
 from todo as t join user as u on t.serviceProvider = u.user_id
-join user_type as ut on u.user_type = ut.type_id 
+join user_type as ut on u.user_type = ut.type_id
 where u.user_id = 52; */
-/* 
+/*
 select * from user;
  */
-select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
+select t_id as id, task, complete,date,ut.type, t.type as typeId, serviceProvider
         from todo as t join user as u on t.serviceProvider = u.user_id
-        join user_type as ut on u.user_type = ut.type_id 
-        where u.user_id = 52;
+        join user_type as ut on u.user_type = ut.type_id
+        where u.user_id = 53;
 
-
+-- select * from user
 /* SELECT t.t_id, task, complete, date, ut.type, t.type as typeId, img, serviceProvider
-        FROM todo AS t 
+        FROM todo AS t
         JOIN user_type AS ut
         on t.type = ut.type_id
         WHERE t.property =  */
@@ -51,10 +51,10 @@ select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
         group by channel; */
 
 -- insert into message values(null, 1, 31, "2020-11-4", "hey you")
-SELECT m.*
-FROM  message as m
-        where( m.sender = 1 or m.getter = 1)
-        AND (m.sender = 6 or m.getter = 6)
+-- SELECT m.*
+-- FROM  message as m
+--         where( m.sender = 1 or m.getter = 1)
+--         AND (m.sender = 6 or m.getter = 6)
 
 -- select * from message
 -- select channel, count(b.id) as numberOfBooking
