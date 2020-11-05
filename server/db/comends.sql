@@ -1,14 +1,16 @@
 USE manageme;
-/* 
+/*
 select id from property where name = 'MA-05 Casa Fantastica' */
 
+-- drop table message
 
 /* select * from property; */
 
-
-/* select count(b.id),channel 
+-- insert into chet values(1 , 6 , "2020-11-04", "sup?");
+-- select * from chet;
+/* select count(b.id),channel
 from booking as b join property as p
-on b.property = p.id 
+on b.property = p.id
 join property_user as pu on pu.property = p.id
 
 group by channel; */
@@ -48,10 +50,26 @@ select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
         where  u.user_id = 1
         group by channel; */
 
+-- insert into message values(null, 1, 31, "2020-11-4", "hey you")
+SELECT m.*
+FROM  message as m
+        where( m.sender = 1 or m.getter = 1)
+        AND (m.sender = 6 or m.getter = 6)
+
+-- select * from message
+-- select channel, count(b.id) as numberOfBooking
+--         from user as u join property_user as pu
+--         on u.user_id = pu.user
+--         join property as p on p.id = pu.property
+--         join booking as b on b.property = p.id
+--         where  u.user_id = 1
+--         group by channel;
+
+
 
 /* select * from user; */
 
-/* select count(b.id),channel 
+/* select count(b.id),channel
 from user as u join property_user as pu
 on u.user_id = pu.user
 join property as p on p.id = pu.property

@@ -5,7 +5,7 @@ const todoDBServices = function () {
 
     const getTodos = async (id) => {
         const query = `SELECT t.t_id, task, complete, date, ut.type, t.type as typeId, img, serviceProvider
-        FROM todo AS t 
+        FROM todo AS t
         JOIN user_type AS ut
         on t.type = ut.type_id
         WHERE t.property = ${id};`
@@ -14,7 +14,6 @@ const todoDBServices = function () {
     }
 
     const saveTodo = async (todo) => {
-        console.log(todo)
         const query = `INSERT INTO todo VALUES(
         null,
         '${todo.task}',

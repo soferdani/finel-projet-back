@@ -3,27 +3,46 @@ const sequelize = require('./sqlConnection')
 
 const employeeDBServices = function () {
 
-    const getEmployeesByProperty = async (id) => {
+    const getEmployeesByProperty = async (propertyId, userId) => {
+        const lastLine = userId === '1' ? 'ut.type_id <> 1' : 'ut.type_id = 1'
         const query = `SELECT user_id as id, first_name as firstName,
         last_name as lastName, email,
         phone, datejoin AS dateJoin,
         user_type as typeId, type, img
         FROM user AS u JOIN property_user AS pu ON u.user_id = pu.user
         JOIN user_type as ut ON ut.type_id = u.user_type
-        WHERE pu.property = ${id}
-        AND ut.type_id <> 1;`
+        WHERE pu.property = ${propertyId}
+        AND ${lastLine};`
         const [responseFromDB] = await sequelize.query(query)
         return responseFromDB
     }
-
-    const getEmployeesByManager = async(managerId) => {
-        const query = `select user_id as id, first_name as firstName, last_name as lastName, email, phone, datejoin as dateJoin, type, img
-        from user as u join manger_employee as me
-        on u.user_id = me.employee_id
-        join user_type as ut
-        on u.user_type = ut.type_id
-        where me.manager_id = ${managerId};`
+    const getEmployeesByManager = async(managerId, typeId) => {
+        let query
+        if(typeId === '1'){
+            query = `select user_id as id, first_name as firstName, last_name as lastName,
+            email, phone, datejoin as dateJoin, type, ut.type_id as typeId, img
+            from user as u join manger_employee as me
+            on u.user_id = me.employee_id
+            join user_type as ut
+            on u.user_type = ut.type_id
+            where me.manager_id = ${managerId};`
+        } else {
+            query = `select user_id as id, first_name as firstName, last_name as lastName,
+            email, phone, datejoin as dateJoin, type, ut.type_id as typeId, img
+            from user as u join manger_employee as me
+            on u.user_id = me.manager_id
+            join user_type as ut
+            on u.user_type = ut.type_id
+            where me.employee_id = ${managerId};`
+        }
         const [responseFromDB] = await sequelize.query(query)
+        for(let e of responseFromDB){
+            let messages = await sequelize.query(`SELECT m.*
+                FROM  message as m
+                        where( m.sender = ${managerId} or m.getter = ${managerId})
+                        AND (m.sender = ${e.id} or m.getter = ${e.id})`)
+            e.messages = messages[0]
+        }
         return responseFromDB
     }
 
