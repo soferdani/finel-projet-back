@@ -15,6 +15,41 @@ join property_user as pu on pu.property = p.id
 
 group by channel; */
 
+/* select * from user_type; */
+/* 
+select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
+from todo as t join user as u on t.serviceProvider = u.user_id
+join user_type as ut on u.user_type = ut.type_id 
+where u.user_id = 52; */
+/* 
+select * from user;
+ */
+select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
+        from todo as t join user as u on t.serviceProvider = u.user_id
+        join user_type as ut on u.user_type = ut.type_id 
+        where u.user_id = 52;
+
+
+/* SELECT t.t_id, task, complete, date, ut.type, t.type as typeId, img, serviceProvider
+        FROM todo AS t 
+        JOIN user_type AS ut
+        on t.type = ut.type_id
+        WHERE t.property =  */
+
+/* SELECT t.t_id, task, complete, date, ut.type, t.type as typeId, img, serviceProvider
+        FROM todo AS t JOIN user_type AS ut on t.type = ut.type_id
+        join user as u on u.user_id =
+        WHERE u.user_id =   */
+
+
+/* select channel, count(b.id) as numberOfBooking
+        from user as u join property_user as pu
+        on u.user_id = pu.user
+        join property as p on p.id = pu.property
+        join booking as b on b.property = p.id
+        where  u.user_id = 1
+        group by channel; */
+
 -- insert into message values(null, 1, 31, "2020-11-4", "hey you")
 SELECT m.*
 FROM  message as m
@@ -29,6 +64,7 @@ FROM  message as m
 --         join booking as b on b.property = p.id
 --         where  u.user_id = 1
 --         group by channel;
+
 
 
 /* select * from user; */

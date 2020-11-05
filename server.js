@@ -13,6 +13,8 @@ const socketIO = require('socket.io');
 const sequelize = require('./server/db/sqlConnection')
 const moment = require('moment')
 
+
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
