@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
       null,
       ${msg.sender},
       ${msg.getter},
-      '${moment().format('YYYY-MM-DD')}',
+      '${moment().format()}',
       '${msg.text}');`
        const id = await sequelize.query(query)
        msg.id = id[0]
