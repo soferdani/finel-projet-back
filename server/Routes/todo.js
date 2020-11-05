@@ -46,5 +46,10 @@ router.delete('/todo/:id', async (req, res) => {
     const deleted = await DBServices.deleteTodo(id)
     res.send(deleted)
 })
+router.get('/todo/:userId', async (req, res) => {
+    const { userId } = req.params
+    const bringAllTodoForUser = await DBServices.bringAllTodoForServiceProv(userId)
+    res.send(bringAllTodoForUser)
+})
 
 module.exports = router

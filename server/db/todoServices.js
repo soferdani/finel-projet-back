@@ -59,12 +59,23 @@ const todoDBServices = function () {
     }
 
 
+    const bringAllTodoForServiceProv = async (id) => {
+        const query = `select t_id, task, complete,date,ut.type, t.type as typeId, serviceProvider
+        from todo as t join user as u on t.serviceProvider = u.user_id
+        join user_type as ut on u.user_type = ut.type_id 
+        where u.user_id = ${id};`
+        const [responseFromDB] = await sequelize.query(query)
+        return responseFromDB
+    }
+
+
     return {
         getTodos,
         saveTodo,
         checkTodo,
         updateTodo,
-        deleteTodo
+        deleteTodo,
+        bringAllTodoForServiceProv
     }
 }
 

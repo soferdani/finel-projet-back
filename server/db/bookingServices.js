@@ -5,7 +5,6 @@ const moment = require('moment')
 
 const bookingDBServices = function () {
 
-
     const getAllBooking = async (propertyId) => { //tested
         let query = `select id,
          start_date as startDate,
@@ -17,6 +16,7 @@ const bookingDBServices = function () {
         return responseFromDB
     }
 
+    
 
     const saveBooking = async (booking) => { //tested
         // let test = parseInt(booking.adults_c) + parseInt(booking.children_c)
